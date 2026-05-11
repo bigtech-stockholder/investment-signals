@@ -1,0 +1,5 @@
+yfinance>=0.2.40
+pandas-ta-classic
+pandas>=2.3.3
+numpy
+requests
