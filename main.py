@@ -8,6 +8,7 @@ import shutil
 from datetime import datetime, timezone, timedelta
 
 import certifi
+import requests
 
 # curl_cffi는 경로에 비ASCII 문자가 있으면 SSL 인증서를 로드하지 못함 (Windows 한글 경로 등)
 # yfinance import 전에 CA 번들을 ASCII 경로로 복사해서 환경변수로 지정
@@ -658,6 +659,152 @@ def save_results(results: list) -> dict:
     return summary
 
 
+# 디스코드 임베드 색깔 (10진수 정수, Discord 표준)
+COLOR_STOP_LOSS  = 0xE74C3C  # 빨강 — 손절 도달
+COLOR_TARGET2    = 0x2ECC71  # 초록 — 2차 익절
+COLOR_TARGET1    = 0xF1C40F  # 황색 — 1차 익절
+COLOR_BUY_STRONG = 0x3498DB  # 파랑 — 적극/강력 매수
+COLOR_BUY_WATCH  = 0x5DADE2  # 하늘색 — 매수 검토
+COLOR_WARN_HIGH  = 0xE67E22  # 주황 — 비중 축소/정리
+COLOR_WARN_LOW   = 0xF7DC6F  # 노랑 — 주의
+
+
+def _build_embeds(results: list) -> list:
+    """results 리스트에서 알림이 필요한 종목만 골라 디스코드 임베드 리스트로 변환.
+
+    우선순위: 손절 > 2차익절 > 1차익절 > 매수12+ > 매수8+ > 경고8+ > 경고5+
+    """
+    embeds = []
+
+    # 1) 보유분 손절·익절 알림 (가장 위에)
+    for r in results:
+        if r["status"] != "ok" or not r["holding"].get("is_holding"):
+            continue
+        h = r["holding"]
+        if h["stop_loss_hit"]:
+            embeds.append({
+                "title": f"🚨 손절 도달 — {r['name']} ({r['ticker']})",
+                "description": f"**즉시 정리 검토**\n수익률: **{h['pnl_pct']:+.2f}%**",
+                "color": COLOR_STOP_LOSS,
+                "fields": [
+                    {"name": "현재 종가", "value": f"{h['current_close']:,.2f} {h['currency']}", "inline": True},
+                    {"name": "평균 단가", "value": f"{h['avg_price']:,.2f} {h['currency']}", "inline": True},
+                    {"name": "보유 수량", "value": f"{h['shares']}주", "inline": True},
+                ],
+            })
+        elif h["target2_hit"]:
+            embeds.append({
+                "title": f"🟢 2차 익절 도달 (+20%) — {r['name']} ({r['ticker']})",
+                "description": f"**전량 익절 검토**\n수익률: **{h['pnl_pct']:+.2f}%**",
+                "color": COLOR_TARGET2,
+                "fields": [
+                    {"name": "현재 종가", "value": f"{h['current_close']:,.2f} {h['currency']}", "inline": True},
+                    {"name": "평균 단가", "value": f"{h['avg_price']:,.2f} {h['currency']}", "inline": True},
+                    {"name": "보유 수량", "value": f"{h['shares']}주", "inline": True},
+                ],
+            })
+        elif h["target1_hit"]:
+            embeds.append({
+                "title": f"🟡 1차 익절 도달 (+10%) — {r['name']} ({r['ticker']})",
+                "description": f"**50% 익절 검토**\n수익률: **{h['pnl_pct']:+.2f}%**",
+                "color": COLOR_TARGET1,
+                "fields": [
+                    {"name": "현재 종가", "value": f"{h['current_close']:,.2f} {h['currency']}", "inline": True},
+                    {"name": "평균 단가", "value": f"{h['avg_price']:,.2f} {h['currency']}", "inline": True},
+                    {"name": "보유 수량", "value": f"{h['shares']}주", "inline": True},
+                ],
+            })
+
+    # 2) 매수 시그널 알림 (12점 이상 우선)
+    buy_strong = [r for r in results if r["status"] == "ok" and r["buy"]["total"] >= 12]
+    buy_watch = [r for r in results if r["status"] == "ok" and 8 <= r["buy"]["total"] < 12]
+
+    for r in buy_strong + buy_watch:
+        buy_pt = r["buy"]["total"]
+        verdict = r["buy"]["verdict"]
+        ind = r["indicators"]
+        passed_items = [d for d in r["buy"]["details"] if d["passed"]]
+        reasons = "\n".join([f"• {d['name']} ({d['score']}점)" for d in passed_items])
+        # 손절/익절 계산
+        close = ind["close"]
+        target1 = close * 1.10
+        target2 = close * 1.20
+        stop = close * 0.93
+        embeds.append({
+            "title": f"💎 매수 시그널 — {r['name']} ({r['ticker']})",
+            "description": (
+                f"**{verdict}** ({buy_pt}점) · {r['category']} · {r['market']}\n\n"
+                f"**충족 조건:**\n{reasons}\n\n"
+                f"**진입가**: {close:,.2f}\n"
+                f"**1차 목표 (+10%)**: {target1:,.2f}\n"
+                f"**2차 목표 (+20%)**: {target2:,.2f}\n"
+                f"**손절 라인 (-7%)**: {stop:,.2f}"
+            ),
+            "color": COLOR_BUY_STRONG if buy_pt >= 12 else COLOR_BUY_WATCH,
+        })
+
+    # 3) 경고 시그널 알림 (8점 이상 우선)
+    warn_high = [r for r in results if r["status"] == "ok" and r["warning"]["total"] >= 8]
+    warn_low = [r for r in results if r["status"] == "ok" and 5 <= r["warning"]["total"] < 8]
+
+    for r in warn_high + warn_low:
+        warn_pt = r["warning"]["total"]
+        verdict = r["warning"]["verdict"]
+        passed_items = [d for d in r["warning"]["details"] if d["passed"]]
+        reasons = "\n".join([f"• {d['name']} ({d['score']}점)" for d in passed_items])
+        embeds.append({
+            "title": f"⚠️ 경고 시그널 — {r['name']} ({r['ticker']})",
+            "description": (
+                f"**{verdict}** ({warn_pt}점) · {r['category']} · {r['market']}\n\n"
+                f"**충족 조건:**\n{reasons}"
+            ),
+            "color": COLOR_WARN_HIGH if warn_pt >= 8 else COLOR_WARN_LOW,
+        })
+
+    return embeds
+
+
+def send_discord_notification(results: list, summary: dict) -> None:
+    """알림이 필요한 종목이 있으면 Discord Webhook으로 발송.
+    환경변수 DISCORD_WEBHOOK_URL이 없으면 로컬 테스트 모드로 간주하고 콘솔에만 출력.
+    """
+    webhook_url = os.environ.get("DISCORD_WEBHOOK_URL")
+
+    embeds = _build_embeds(results)
+
+    # 알림 대상이 하나도 없으면 발송 생략
+    if not embeds:
+        print("\n📭 알림 대상 없음 (조용한 날입니다)")
+        return
+
+    print(f"\n📨 알림 대상 {len(embeds)}건 발견")
+
+    if not webhook_url:
+        print("  (DISCORD_WEBHOOK_URL 환경변수가 없어 콘솔 출력만 진행)")
+        for e in embeds:
+            print(f"\n  -- {e['title']}")
+            print(f"     {e.get('description', '')[:200]}")
+        return
+
+    # 디스코드 임베드는 메시지당 최대 10개 → 10개씩 나눠 발송
+    now_kst = datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%d %H:%M KST")
+    header_content = f"📊 **투자 시그널 리포트** — {now_kst}\n(총 {summary['total']}개 종목 분석, 알림 {len(embeds)}건)"
+
+    for i in range(0, len(embeds), 10):
+        batch = embeds[i : i + 10]
+        payload = {"embeds": batch}
+        if i == 0:
+            payload["content"] = header_content
+        try:
+            resp = requests.post(webhook_url, json=payload, timeout=10)
+            if resp.status_code in (200, 204):
+                print(f"  ✅ {len(batch)}건 발송 완료 (배치 {i//10 + 1})")
+            else:
+                print(f"  ❌ 발송 실패: HTTP {resp.status_code} — {resp.text[:200]}")
+        except Exception as e:
+            print(f"  ❌ 발송 예외: {e}")
+
+
 if __name__ == "__main__":
     print("=" * 60)
     print(f"투자 시그널 산출 시작: {datetime.now(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M KST')}")
@@ -701,3 +848,5 @@ if __name__ == "__main__":
             print(f"  • {r['ticker']:15s} ({r['name']}) — {h['pnl_pct']:+.2f}% — {h['action']}")
     if not found:
         print("  (해당 종목 없음)")
+
+    send_discord_notification(results, summary)
