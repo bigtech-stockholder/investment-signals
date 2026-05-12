@@ -1,0 +1,47 @@
+name: Daily Signal Run
+
+on:
+  schedule:
+    # 한국 장 마감 직후 (15:30 KST = 06:30 UTC, 10분 여유)
+    - cron: '40 6 * * 1-5'
+    # 미국 장 마감 직후 (16:00 ET ≒ 21:30 UTC, 서머타임 기준)
+    - cron: '30 21 * * 1-5'
+  workflow_dispatch:  # 수동 실행 버튼 (테스트용)
+
+permissions:
+  contents: write  # 결과 JSON을 저장소에 푸시하기 위한 권한
+
+jobs:
+  run-signals:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Python 3.12 설치
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: pip 업그레이드 및 의존성 설치
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: main.py 실행
+        run: python main.py
+
+      - name: 결과 커밋 및 푸시
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/
+          if git diff --staged --quiet; then
+            echo "변경사항 없음 - 커밋 생략"
+          else
+            git commit -m "auto: $(date -u +'%Y-%m-%d %H:%M UTC') 시그널 결과 업데이트"
+            git push
+          fi
