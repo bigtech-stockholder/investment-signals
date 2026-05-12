@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment Signals Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    background: #0f1419;
+    color: #e6e6e6;
+    padding: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  h1 { font-size: 1.4rem; color: #fff; }
+  .meta { color: #8a9aa8; font-size: 0.85rem; }
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .stat {
+    background: #1a2332;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border-left: 4px solid #4a90e2;
+  }
+  .stat-label { font-size: 0.8rem; color: #8a9aa8; margin-bottom: 4px; }
+  .stat-value { font-size: 1.5rem; font-weight: 600; }
+  .stat.buy { border-left-color: #2ecc71; }
+  .stat.warn { border-left-color: #e67e22; }
+  .stat.pnl { border-left-color: #e74c3c; }
+
+  section { margin-bottom: 28px; }
+  h2 {
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+    color: #fff;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #2a3a4a;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1a2332;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 0.88rem;
+  }
+  thead {
+    background: #243042;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #2a3a4a;
+    white-space: nowrap;
+  }
+  th { color: #b8c5d1; font-weight: 600; font-size: 0.82rem; }
+  tbody tr:hover { background: #243042; }
+  tbody tr:last-child td { border-bottom: none; }
+
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .ticker { font-family: ui-monospace, "SF Mono", monospace; font-size: 0.85rem; color: #8a9aa8; }
+  .pos { color: #2ecc71; }
+  .neg { color: #e74c3c; }
+  .neutral { color: #8a9aa8; }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .badge-major { background: #2c3e50; color: #ecf0f1; }
+  .badge-minor { background: #34495e; color: #bdc3c7; }
+  .badge-holding { background: #5d4037; color: #ffccbc; }
+  .badge-kr { background: #1e3a5f; color: #aed6f1; }
+  .badge-us { background: #5b3a1e; color: #f5cba7; }
+
+  .verdict-strong { color: #2ecc71; font-weight: 700; }
+  .verdict-active { color: #5dade2; font-weight: 600; }
+  .verdict-watch  { color: #85c1e9; }
+  .verdict-warn-high  { color: #e67e22; font-weight: 700; }
+  .verdict-warn-low   { color: #f7dc6f; }
+  .verdict-stop  { color: #e74c3c; font-weight: 700; }
+  .verdict-target2 { color: #2ecc71; font-weight: 700; }
+  .verdict-target1 { color: #f1c40f; font-weight: 600; }
+  .empty { color: #5d6d7e; font-style: italic; padding: 12px; }
+
+  details {
+    background: #1a2332;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-top: 4px;
+  }
+  details summary {
+    cursor: pointer;
+    color: #8a9aa8;
+    font-size: 0.82rem;
+  }
+  details ul {
+    margin-top: 8px;
+    padding-left: 18px;
+    font-size: 0.82rem;
+    color: #b8c5d1;
+  }
+  details li { margin-bottom: 3px; }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.15rem; }
+    .stat-value { font-size: 1.2rem; }
+    th, td { padding: 8px 6px; font-size: 0.78rem; }
+    th:nth-child(3), td:nth-child(3) { display: none; }
+  }
+
+  .refresh-info {
+    text-align: center;
+    color: #5d6d7e;
+    font-size: 0.75rem;
+    margin-top: 20px;
+    padding: 12px;
+  }
+  .loading { color: #8a9aa8; padding: 20px; text-align: center; }
+  .error { color: #e74c3c; padding: 20px; text-align: center; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>📊 Investment Signals Dashboard</h1>
+    <div class="meta" id="meta">데이터 로딩 중...</div>
+  </div>
+</header>
+
+<div id="content" class="loading">시그널 데이터를 불러오는 중입니다...</div>
+
+<div class="refresh-info">
+  매일 한국 장 마감(15:40 KST) / 미국 장 마감(06:30 KST) 후 자동 갱신 · 새로고침은 브라우저 F5
+</div>
+
+<script>
+const VERDICT_CLASS = {
+  "강력 매수": "verdict-strong",
+  "적극 매수": "verdict-active",
+  "매수 검토": "verdict-watch",
+  "전량 정리 검토": "verdict-warn-high",
+  "비중 축소": "verdict-warn-high",
+  "주의": "verdict-warn-low",
+};
+
+const CATEGORY_LABEL = {
+  "major": '<span class="badge badge-major">메이저</span>',
+  "minor": '<span class="badge badge-minor">마이너</span>',
+  "holdings_only": '<span class="badge badge-holding">보유</span>',
+};
+
+const MARKET_LABEL = {
+  "KR": '<span class="badge badge-kr">KR</span>',
+  "US": '<span class="badge badge-us">US</span>',
+};
+
+function fmt(num, digits = 2) {
+  if (num === null || num === undefined || Number.isNaN(num)) return "-";
+  return num.toLocaleString("ko-KR", { maximumFractionDigits: digits, minimumFractionDigits: digits });
+}
+
+function pnlClass(pct) {
+  if (pct > 0) return "pos";
+  if (pct < 0) return "neg";
+  return "neutral";
+}
+
+function render(payload) {
+  const { run_at, run_date_kst, summary, results } = payload;
+  const okResults = results.filter(r => r.status === "ok");
+
+  // 메타
+  const runDate = new Date(run_at);
+  document.getElementById("meta").textContent =
+    `최근 갱신: ${runDate.toLocaleString("ko-KR", { dateStyle: "medium", timeStyle: "short" })} · 종가 기준: ${run_date_kst}`;
+
+  // 알림 대상 분류
+  const pnlAlerts = okResults.filter(r => r.holding.is_holding &&
+    (r.holding.stop_loss_hit || r.holding.target1_hit || r.holding.target2_hit));
+  const buySignals = okResults.filter(r => r.buy.total >= 8).sort((a, b) => b.buy.total - a.buy.total);
+  const warnSignals = okResults.filter(r => r.warning.total >= 5).sort((a, b) => b.warning.total - a.warning.total);
+  const allRows = [...okResults].sort((a, b) => {
+    // 매수 점수 높은 순 → 경고 점수 높은 순
+    if (b.buy.total !== a.buy.total) return b.buy.total - a.buy.total;
+    return b.warning.total - a.warning.total;
+  });
+  const holdings = okResults.filter(r => r.holding.is_holding);
+
+  let html = "";
+
+  // 요약 카드
+  html += `<div class="summary">
+    <div class="stat"><div class="stat-label">분석 종목</div><div class="stat-value">${summary.ok} / ${summary.total}</div></div>
+    <div class="stat pnl"><div class="stat-label">손절·익절 알림</div><div class="stat-value">${summary.pnl_alert_count}</div></div>
+    <div class="stat buy"><div class="stat-label">매수 시그널 (8점+)</div><div class="stat-value">${summary.buy_signal_count}</div></div>
+    <div class="stat warn"><div class="stat-label">경고 시그널 (5점+)</div><div class="stat-value">${summary.warning_signal_count}</div></div>
+  </div>`;
+
+  // 손절/익절 알림
+  html += `<section><h2>🚨 보유 손절·익절 알림</h2>`;
+  if (pnlAlerts.length === 0) {
+    html += `<div class="empty">해당 종목 없음</div>`;
+  } else {
+    html += `<table><thead><tr>
+      <th>종목</th><th>티커</th><th>현재가</th><th>평균단가</th><th class="num">수익률</th><th>판정</th>
+    </tr></thead><tbody>`;
+    pnlAlerts.forEach(r => {
+      const h = r.holding;
+      let verdictClass = "";
+      if (h.stop_loss_hit) verdictClass = "verdict-stop";
+      else if (h.target2_hit) verdictClass = "verdict-target2";
+      else if (h.target1_hit) verdictClass = "verdict-target1";
+      html += `<tr>
+        <td>${r.name}</td>
+        <td class="ticker">${r.ticker}</td>
+        <td class="num">${fmt(h.current_close)}</td>
+        <td class="num">${fmt(h.avg_price)}</td>
+        <td class="num ${pnlClass(h.pnl_pct)}">${h.pnl_pct >= 0 ? "+" : ""}${h.pnl_pct.toFixed(2)}%</td>
+        <td class="${verdictClass}">${h.action}</td>
+      </tr>`;
+    });
+    html += `</tbody></table>`;
+  }
+  html += `</section>`;
+
+  // 매수 시그널
+  html += `<section><h2>💎 매수 시그널 (8점 이상)</h2>`;
+  if (buySignals.length === 0) {
+    html += `<div class="empty">해당 종목 없음</div>`;
+  } else {
+    html += `<table><thead><tr>
+      <th>종목</th><th>티커</th><th>분류</th><th class="num">점수</th><th>판정</th><th>충족 조건</th>
+    </tr></thead><tbody>`;
+    buySignals.forEach(r => {
+      const passed = r.buy.details.filter(d => d.passed).map(d => d.name).join(", ");
+      html += `<tr>
+        <td>${r.name} ${MARKET_LABEL[r.market]}</td>
+        <td class="ticker">${r.ticker}</td>
+        <td>${CATEGORY_LABEL[r.category]}</td>
+        <td class="num"><b>${r.buy.total}</b></td>
+        <td class="${VERDICT_CLASS[r.buy.verdict] || ''}">${r.buy.verdict}</td>
+        <td style="white-space:normal; font-size:0.82rem; color:#b8c5d1;">${passed}</td>
+      </tr>`;
+    });
+    html += `</tbody></table>`;
+  }
+  html += `</section>`;
+
+  // 경고 시그널
+  html += `<section><h2>⚠️ 경고 시그널 (5점 이상)</h2>`;
+  if (warnSignals.length === 0) {
+    html += `<div class="empty">해당 종목 없음</div>`;
+  } else {
+    html += `<table><thead><tr>
+      <th>종목</th><th>티커</th><th>분류</th><th class="num">점수</th><th>판정</th><th>충족 조건</th>
+    </tr></thead><tbody>`;
+    warnSignals.forEach(r => {
+      const passed = r.warning.details.filter(d => d.passed).map(d => d.name).join(", ");
+      html += `<tr>
+        <td>${r.name} ${MARKET_LABEL[r.market]}</td>
+        <td class="ticker">${r.ticker}</td>
+        <td>${CATEGORY_LABEL[r.category]}</td>
+        <td class="num"><b>${r.warning.total}</b></td>
+        <td class="${VERDICT_CLASS[r.warning.verdict] || ''}">${r.warning.verdict}</td>
+        <td style="white-space:normal; font-size:0.82rem; color:#b8c5d1;">${passed}</td>
+      </tr>`;
+    });
+    html += `</tbody></table>`;
+  }
+  html += `</section>`;
+
+  // 보유 종목 현황
+  html += `<section><h2>📦 보유 종목 현황</h2>`;
+  if (holdings.length === 0) {
+    html += `<div class="empty">보유 종목 데이터 없음</div>`;
+  } else {
+    html += `<table><thead><tr>
+      <th>종목</th><th>티커</th><th>수량</th><th>평균단가</th><th>현재가</th><th class="num">수익률</th>
+    </tr></thead><tbody>`;
+    holdings.forEach(r => {
+      const h = r.holding;
+      html += `<tr>
+        <td>${r.name}</td>
+        <td class="ticker">${r.ticker}</td>
+        <td class="num">${h.shares}</td>
+        <td class="num">${fmt(h.avg_price)}</td>
+        <td class="num">${fmt(h.current_close)}</td>
+        <td class="num ${pnlClass(h.pnl_pct)}">${h.pnl_pct >= 0 ? "+" : ""}${h.pnl_pct.toFixed(2)}%</td>
+      </tr>`;
+    });
+    html += `</tbody></table>`;
+  }
+  html += `</section>`;
+
+  // 전체 점수표
+  html += `<section><h2>📋 전체 종목 점수표</h2>
+    <table><thead><tr>
+      <th>종목</th><th>티커</th><th>분류</th><th class="num">종가</th><th class="num">매수</th><th class="num">경고</th><th>ADX</th><th>거래량배율</th>
+    </tr></thead><tbody>`;
+  allRows.forEach(r => {
+    const i = r.indicators;
+    html += `<tr>
+      <td>${r.name} ${MARKET_LABEL[r.market]}</td>
+      <td class="ticker">${r.ticker}</td>
+      <td>${CATEGORY_LABEL[r.category]}</td>
+      <td class="num">${fmt(i.close)}</td>
+      <td class="num"><b class="${r.buy.total >= 8 ? 'pos' : ''}">${r.buy.total}</b></td>
+      <td class="num"><b class="${r.warning.total >= 5 ? 'neg' : ''}">${r.warning.total}</b></td>
+      <td class="num">${i.adx ? i.adx.toFixed(1) : '-'}</td>
+      <td class="num">${i.vol_ratio ? i.vol_ratio.toFixed(2) + 'x' : '-'}</td>
+    </tr>`;
+  });
+  html += `</tbody></table></section>`;
+
+  // 오류 종목
+  const errors = results.filter(r => r.status !== "ok");
+  if (errors.length > 0) {
+    html += `<section><h2>❌ 데이터 오류 종목</h2>
+      <table><thead><tr><th>종목</th><th>티커</th><th>오류 메시지</th></tr></thead><tbody>`;
+    errors.forEach(r => {
+      html += `<tr><td>${r.name}</td><td class="ticker">${r.ticker}</td><td>${r.error_message || '-'}</td></tr>`;
+    });
+    html += `</tbody></table></section>`;
+  }
+
+  document.getElementById("content").className = "";
+  document.getElementById("content").innerHTML = html;
+}
+
+async function load() {
+  try {
+    // 캐시 회피를 위해 timestamp 쿼리 추가
+    const resp = await fetch("data/latest.json?ts=" + Date.now());
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+    const payload = await resp.json();
+    render(payload);
+  } catch (e) {
+    document.getElementById("content").className = "error";
+    document.getElementById("content").innerHTML =
+      `❌ 데이터 로딩 실패: ${e.message}<br>잠시 후 새로고침해주세요.`;
+  }
+}
+
+load();
+</script>
+
+</body>
+</html>
