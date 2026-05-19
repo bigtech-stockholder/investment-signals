@@ -317,6 +317,89 @@
   }
   .error { color: var(--danger); }
 
+  /* ===== Note text in schedule ===== */
+  .schedule-item .note {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* ===== Edit guide card ===== */
+  .edit-guide {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+  }
+  .edit-guide-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .edit-guide-title {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+  .edit-guide-btn {
+    background: var(--accent);
+    color: #fff;
+    padding: 7px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: opacity 0.15s ease;
+  }
+  .edit-guide-btn:hover { opacity: 0.85; }
+  :root[data-theme="dark"] .edit-guide-btn { color: #1F1E1B; }
+  .edit-guide-details {
+    margin-top: 10px;
+    background: transparent;
+    padding: 0;
+  }
+  .edit-guide-details summary {
+    color: var(--text-soft);
+    font-size: 0.85rem;
+    padding: 6px 0;
+  }
+  .edit-guide-body {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+  }
+  .scenario {
+    background: var(--surface-2);
+    padding: 10px 12px;
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+  }
+  .scenario.warn { border-left-color: var(--warn); }
+  .scenario-title {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+  }
+  .scenario-body {
+    color: var(--text-soft);
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  .scenario-body code {
+    background: var(--bg);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.78rem;
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  }
+
   /* ===== Mobile ===== */
   @media (max-width: 640px) {
     body { padding: 16px 14px 40px; font-size: 14px; }
@@ -344,6 +427,7 @@
     <div class="label">🇰🇷 한국 시장 다음 갱신</div>
     <div class="value" id="krNext">계산 중...</div>
     <div class="countdown" id="krCountdown"></div>
+    <div class="note">한국 종목은 KRX 정규장(15:30) 종가 기준입니다.</div>
   </div>
   <div class="schedule-item">
     <div class="label">🇺🇸 미국 시장 다음 갱신</div>
@@ -355,6 +439,41 @@
     <div class="value" id="lastUpdate">-</div>
     <div class="countdown" id="lastAgo"></div>
   </div>
+</div>
+
+<!-- TODO: REPLACE_WITH_SHEET_ID를 실제 시트 ID로 교체 -->
+<div class="edit-guide">
+  <div class="edit-guide-header">
+    <span class="edit-guide-title">📝 매매 후 보유 종목 수정</span>
+    <a href="https://docs.google.com/spreadsheets/d/REPLACE_WITH_SHEET_ID/edit" target="_blank" class="edit-guide-btn">
+      구글 시트 열기 →
+    </a>
+  </div>
+  <details class="edit-guide-details">
+    <summary>매매 시나리오별 수정 방법</summary>
+    <div class="edit-guide-body">
+      <div class="scenario">
+        <div class="scenario-title">신규 매수</div>
+        <div class="scenario-body"><code>holdings</code> 탭의 빈 줄에 종목명·티커·수량·평단·통화 입력</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-title">추가 매수</div>
+        <div class="scenario-body">해당 종목 행에서 <code>shares</code>와 <code>avg_price</code>를 증권사 앱의 새 평단으로 수정</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-title">부분 매도</div>
+        <div class="scenario-body"><code>shares</code> 숫자만 수정 (평단 그대로)</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-title">전량 매도</div>
+        <div class="scenario-body">해당 행 번호에 우클릭 → "행 삭제"</div>
+      </div>
+      <div class="scenario warn">
+        <div class="scenario-title">⚠️ 주의</div>
+        <div class="scenario-body">평단에 쉼표 금지(<code>1571000</code> O / <code>1,571,000</code> X) · currency는 <code>KRW</code> 또는 <code>USD</code>만 · 1행 헤더는 건드리지 마세요</div>
+      </div>
+    </div>
+  </details>
 </div>
 
 <div id="content" class="loading">시그널 데이터를 불러오는 중입니다...</div>
