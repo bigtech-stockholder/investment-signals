@@ -138,6 +138,33 @@ def load_config():
                 f"(현재 값: '{category}')"
             )
 
+    # === 자동 보완: holdings에는 있지만 watchlist에 없는 종목은 holdings_only로 자동 추가 ===
+    watchlist_tickers = set()
+    for item in tickers["watchlist"]["major"]:
+        watchlist_tickers.add(item["ticker"])
+    for item in tickers["watchlist"]["minor"]:
+        watchlist_tickers.add(item["ticker"])
+    for item in tickers["holdings_only"]:
+        watchlist_tickers.add(item["ticker"])
+
+    auto_added = []
+    for holding in portfolio["holdings"]:
+        if holding["ticker"] not in watchlist_tickers:
+            # 시장 자동 판별: 한국 종목은 .KS 또는 .KQ로 끝남
+            if holding["ticker"].endswith(".KS") or holding["ticker"].endswith(".KQ"):
+                market = "KR"
+            else:
+                market = "US"
+            auto_item = {
+                "name": holding["name"],
+                "ticker": holding["ticker"],
+                "market": market,
+            }
+            tickers["holdings_only"].append(auto_item)
+            auto_added.append(holding["ticker"])
+    if auto_added:
+        print(f"ℹ️  watchlist에 없는 보유 종목 {len(auto_added)}개를 holdings_only로 자동 추가: {', '.join(auto_added)}")
+
     # 최소 검증
     total_watchlist = len(tickers["watchlist"]["major"]) + len(tickers["watchlist"]["minor"]) + len(tickers["holdings_only"])
     if total_watchlist == 0:
