@@ -28,8 +28,6 @@ import pandas_ta_classic as ta
 
 # 프로젝트 루트 경로 (main.py가 있는 폴더)
 ROOT = Path(__file__).parent
-TICKERS_PATH = ROOT / "tickers.json"
-PORTFOLIO_PATH = ROOT / "portfolio.json"
 DATA_DIR = ROOT / "data"
 
 
@@ -45,13 +43,10 @@ def load_config():
     sheet_id = os.environ.get("GOOGLE_SHEET_ID")
 
     if not sa_json or not sheet_id:
-        # 로컬 개발 fallback: 기존 JSON 파일 읽기
-        print("⚠️  GOOGLE_SERVICE_ACCOUNT_JSON 또는 GOOGLE_SHEET_ID 환경변수가 없음 → 로컬 JSON 파일 사용")
-        with open(TICKERS_PATH, "r", encoding="utf-8") as f:
-            tickers = json.load(f)
-        with open(PORTFOLIO_PATH, "r", encoding="utf-8") as f:
-            portfolio = json.load(f)
-        return tickers, portfolio
+        raise RuntimeError(
+            "환경변수 GOOGLE_SERVICE_ACCOUNT_JSON 또는 GOOGLE_SHEET_ID가 설정되지 않았습니다. "
+            "GitHub Secrets를 확인해주세요."
+        )
 
     # Google Sheets 인증
     import gspread
