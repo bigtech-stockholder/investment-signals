@@ -1,15 +1,262 @@
 {
-  "run_at": "2026-05-19T07:31:22.882297+09:00",
+  "run_at": "2026-05-19T10:23:37.568997+09:00",
   "run_date_kst": "2026-05-19",
   "summary": {
-    "total": 22,
-    "ok": 22,
+    "total": 21,
+    "ok": 21,
     "error": 0,
     "buy_signal_count": 0,
     "warning_signal_count": 1,
-    "pnl_alert_count": 7
+    "pnl_alert_count": 4
   },
   "results": [
+    {
+      "ticker": "GOOGL",
+      "name": "Alphabet",
+      "market": "US",
+      "category": "major",
+      "status": "ok",
+      "last_date": "2026-05-18",
+      "indicators": {
+        "close": 396.94000244140625,
+        "prev_close": 396.7799987792969,
+        "ema_short": 393.09376105928754,
+        "ema_long": 376.0489823411091,
+        "ema_short_prev": 392.1322007137578,
+        "ema_long_prev": 373.9598803310794,
+        "sma_mid": 334.7091998291016,
+        "sma_long": 292.0875705718994,
+        "bb_upper": 425.09233242502387,
+        "bb_middle": 375.86800079345704,
+        "bb_lower": 326.6436691618902,
+        "bb_upper_prev": 423.82776706252395,
+        "bb_lower_prev": 321.9562356230229,
+        "bb_width": 98.44866326313365,
+        "bb_width_avg": 57.23268753092346,
+        "adx": 48.9593005641393,
+        "adx_prev": 48.623428384142464,
+        "plus_di": 41.315232247162825,
+        "minus_di": 12.576905483311066,
+        "volume": 26290651.0,
+        "vol_avg20": 28117272.55,
+        "vol_ratio": 0.9350356067875438
+      },
+      "buy": {
+        "total": 3,
+        "verdict": "관망",
+        "details": [
+          {
+            "name": "골든크로스",
+            "score": 0,
+            "passed": false,
+            "note": "단기EMA 393.09 vs 장기EMA 376.05"
+          },
+          {
+            "name": "BB 하단 반등",
+            "score": 0,
+            "passed": false,
+            "note": "종가 396.94 vs BB하단 326.64"
+          },
+          {
+            "name": "BB 밴드워크",
+            "score": 0,
+            "passed": false,
+            "note": "종가 396.94 vs BB상단 425.09, 밴드폭 98.45"
+          },
+          {
+            "name": "ADX>=30 상승추세",
+            "score": 3,
+            "passed": true,
+            "note": "ADX 48.96, +DI 41.32, -DI 12.58"
+          },
+          {
+            "name": "거래량 돌파(2배+)",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.94배, 종가 396.94 vs 전일 396.78"
+          }
+        ]
+      },
+      "warning": {
+        "total": 0,
+        "verdict": "정상",
+        "details": [
+          {
+            "name": "데드크로스",
+            "score": 0,
+            "passed": false,
+            "note": "단기EMA 393.09 vs 장기EMA 376.05"
+          },
+          {
+            "name": "BB 상단 꺾임",
+            "score": 0,
+            "passed": false,
+            "note": "종가 396.94 vs BB상단 425.09"
+          },
+          {
+            "name": "볼린저 스퀴즈",
+            "score": 0,
+            "passed": false,
+            "note": "밴드폭 98.45 vs 60일평균 57.23"
+          },
+          {
+            "name": "ADX 경고",
+            "score": 0,
+            "passed": false,
+            "note": "ADX 48.96 (해당 없음)"
+          },
+          {
+            "name": "하락+대량거래",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.94배, 하락 폭 0.16"
+          },
+          {
+            "name": "상승+거래량감소",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.94배"
+          },
+          {
+            "name": "거래량 클라이맥스(3배+)",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.94배"
+          }
+        ]
+      },
+      "holding": {
+        "is_holding": false
+      }
+    },
+    {
+      "ticker": "LLY",
+      "name": "Eli Lilly",
+      "market": "US",
+      "category": "major",
+      "status": "ok",
+      "last_date": "2026-05-18",
+      "indicators": {
+        "close": 988.0900268554688,
+        "prev_close": 1004.9199829101562,
+        "ema_short": 983.9524068245588,
+        "ema_long": 961.5997893820688,
+        "ema_short_prev": 982.9180018168313,
+        "ema_long_prev": 958.9507656347289,
+        "sma_mid": 938.5821264648438,
+        "sma_long": 919.6518869018555,
+        "bb_upper": 1045.2421301037991,
+        "bb_middle": 946.3973937988281,
+        "bb_lower": 847.552657493857,
+        "bb_upper_prev": 1040.5388891996195,
+        "bb_lower_prev": 845.2788170992087,
+        "bb_width": 197.68947260994207,
+        "bb_width_avg": 122.78188455141013,
+        "adx": 17.90658828270307,
+        "adx_prev": 18.467917724139948,
+        "plus_di": 27.615824183575587,
+        "minus_di": 22.31817377030219,
+        "volume": 1602915.0,
+        "vol_avg20": 3444665.75,
+        "vol_ratio": 0.4653325217403169
+      },
+      "buy": {
+        "total": 0,
+        "verdict": "관망",
+        "details": [
+          {
+            "name": "골든크로스",
+            "score": 0,
+            "passed": false,
+            "note": "단기EMA 983.95 vs 장기EMA 961.60"
+          },
+          {
+            "name": "BB 하단 반등",
+            "score": 0,
+            "passed": false,
+            "note": "종가 988.09 vs BB하단 847.55"
+          },
+          {
+            "name": "BB 밴드워크",
+            "score": 0,
+            "passed": false,
+            "note": "종가 988.09 vs BB상단 1045.24, 밴드폭 197.69"
+          },
+          {
+            "name": "ADX>=30 상승추세",
+            "score": 0,
+            "passed": false,
+            "note": "ADX 17.91, +DI 27.62, -DI 22.32"
+          },
+          {
+            "name": "거래량 돌파(2배+)",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.47배, 종가 988.09 vs 전일 1004.92"
+          }
+        ]
+      },
+      "warning": {
+        "total": 0,
+        "verdict": "정상",
+        "details": [
+          {
+            "name": "데드크로스",
+            "score": 0,
+            "passed": false,
+            "note": "단기EMA 983.95 vs 장기EMA 961.60"
+          },
+          {
+            "name": "BB 상단 꺾임",
+            "score": 0,
+            "passed": false,
+            "note": "종가 988.09 vs BB상단 1045.24"
+          },
+          {
+            "name": "볼린저 스퀴즈",
+            "score": 0,
+            "passed": false,
+            "note": "밴드폭 197.69 vs 60일평균 122.78"
+          },
+          {
+            "name": "ADX 경고",
+            "score": 0,
+            "passed": false,
+            "note": "ADX 17.91 (해당 없음)"
+          },
+          {
+            "name": "하락+대량거래",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.47배, 하락 폭 -16.83"
+          },
+          {
+            "name": "상승+거래량감소",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.47배"
+          },
+          {
+            "name": "거래량 클라이맥스(3배+)",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.47배"
+          }
+        ]
+      },
+      "holding": {
+        "is_holding": true,
+        "avg_price": 873.576,
+        "shares": 5.0,
+        "currency": "USD",
+        "current_close": 988.0900268554688,
+        "pnl_pct": 13.108650747670348,
+        "stop_loss_hit": false,
+        "target1_hit": true,
+        "target2_hit": false,
+        "action": "1차 익절 50% (+10% 도달)"
+      }
+    },
     {
       "ticker": "AMZN",
       "name": "Amazon",
@@ -126,254 +373,16 @@
         ]
       },
       "holding": {
-        "is_holding": false
-      }
-    },
-    {
-      "ticker": "GOOGL",
-      "name": "Alphabet",
-      "market": "US",
-      "category": "major",
-      "status": "ok",
-      "last_date": "2026-05-18",
-      "indicators": {
-        "close": 396.94000244140625,
-        "prev_close": 396.7799987792969,
-        "ema_short": 393.09376105928754,
-        "ema_long": 376.048982341062,
-        "ema_short_prev": 392.1322007137578,
-        "ema_long_prev": 373.9598803310276,
-        "sma_mid": 334.7091998291016,
-        "sma_long": 292.0875707244873,
-        "bb_upper": 425.09233242502387,
-        "bb_middle": 375.86800079345704,
-        "bb_lower": 326.6436691618902,
-        "bb_upper_prev": 423.82776706252395,
-        "bb_lower_prev": 321.9562356230229,
-        "bb_width": 98.44866326313365,
-        "bb_width_avg": 57.23268753092346,
-        "adx": 48.95930058026511,
-        "adx_prev": 48.62342840138149,
-        "plus_di": 41.31523224472058,
-        "minus_di": 12.57690548198628,
-        "volume": 26290651.0,
-        "vol_avg20": 28117272.55,
-        "vol_ratio": 0.9350356067875438
-      },
-      "buy": {
-        "total": 3,
-        "verdict": "관망",
-        "details": [
-          {
-            "name": "골든크로스",
-            "score": 0,
-            "passed": false,
-            "note": "단기EMA 393.09 vs 장기EMA 376.05"
-          },
-          {
-            "name": "BB 하단 반등",
-            "score": 0,
-            "passed": false,
-            "note": "종가 396.94 vs BB하단 326.64"
-          },
-          {
-            "name": "BB 밴드워크",
-            "score": 0,
-            "passed": false,
-            "note": "종가 396.94 vs BB상단 425.09, 밴드폭 98.45"
-          },
-          {
-            "name": "ADX>=30 상승추세",
-            "score": 3,
-            "passed": true,
-            "note": "ADX 48.96, +DI 41.32, -DI 12.58"
-          },
-          {
-            "name": "거래량 돌파(2배+)",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.94배, 종가 396.94 vs 전일 396.78"
-          }
-        ]
-      },
-      "warning": {
-        "total": 0,
-        "verdict": "정상",
-        "details": [
-          {
-            "name": "데드크로스",
-            "score": 0,
-            "passed": false,
-            "note": "단기EMA 393.09 vs 장기EMA 376.05"
-          },
-          {
-            "name": "BB 상단 꺾임",
-            "score": 0,
-            "passed": false,
-            "note": "종가 396.94 vs BB상단 425.09"
-          },
-          {
-            "name": "볼린저 스퀴즈",
-            "score": 0,
-            "passed": false,
-            "note": "밴드폭 98.45 vs 60일평균 57.23"
-          },
-          {
-            "name": "ADX 경고",
-            "score": 0,
-            "passed": false,
-            "note": "ADX 48.96 (해당 없음)"
-          },
-          {
-            "name": "하락+대량거래",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.94배, 하락 폭 0.16"
-          },
-          {
-            "name": "상승+거래량감소",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.94배"
-          },
-          {
-            "name": "거래량 클라이맥스(3배+)",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.94배"
-          }
-        ]
-      },
-      "holding": {
-        "is_holding": false
-      }
-    },
-    {
-      "ticker": "LLY",
-      "name": "Eli Lilly",
-      "market": "US",
-      "category": "major",
-      "status": "ok",
-      "last_date": "2026-05-18",
-      "indicators": {
-        "close": 988.0900268554688,
-        "prev_close": 1004.9199829101562,
-        "ema_short": 983.9524068245605,
-        "ema_long": 961.5997893790134,
-        "ema_short_prev": 982.9180018168333,
-        "ema_long_prev": 958.9507656313679,
-        "sma_mid": 938.5821264648438,
-        "sma_long": 919.6518893432617,
-        "bb_upper": 1045.2421301037991,
-        "bb_middle": 946.3973937988281,
-        "bb_lower": 847.552657493857,
-        "bb_upper_prev": 1040.5388891996195,
-        "bb_lower_prev": 845.2788170992087,
-        "bb_width": 197.68947260994207,
-        "bb_width_avg": 122.78188545751135,
-        "adx": 17.90658797576697,
-        "adx_prev": 18.467917392662798,
-        "plus_di": 27.61582428987966,
-        "minus_di": 22.318173850752157,
-        "volume": 1602915.0,
-        "vol_avg20": 3444665.75,
-        "vol_ratio": 0.4653325217403169
-      },
-      "buy": {
-        "total": 0,
-        "verdict": "관망",
-        "details": [
-          {
-            "name": "골든크로스",
-            "score": 0,
-            "passed": false,
-            "note": "단기EMA 983.95 vs 장기EMA 961.60"
-          },
-          {
-            "name": "BB 하단 반등",
-            "score": 0,
-            "passed": false,
-            "note": "종가 988.09 vs BB하단 847.55"
-          },
-          {
-            "name": "BB 밴드워크",
-            "score": 0,
-            "passed": false,
-            "note": "종가 988.09 vs BB상단 1045.24, 밴드폭 197.69"
-          },
-          {
-            "name": "ADX>=30 상승추세",
-            "score": 0,
-            "passed": false,
-            "note": "ADX 17.91, +DI 27.62, -DI 22.32"
-          },
-          {
-            "name": "거래량 돌파(2배+)",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.47배, 종가 988.09 vs 전일 1004.92"
-          }
-        ]
-      },
-      "warning": {
-        "total": 0,
-        "verdict": "정상",
-        "details": [
-          {
-            "name": "데드크로스",
-            "score": 0,
-            "passed": false,
-            "note": "단기EMA 983.95 vs 장기EMA 961.60"
-          },
-          {
-            "name": "BB 상단 꺾임",
-            "score": 0,
-            "passed": false,
-            "note": "종가 988.09 vs BB상단 1045.24"
-          },
-          {
-            "name": "볼린저 스퀴즈",
-            "score": 0,
-            "passed": false,
-            "note": "밴드폭 197.69 vs 60일평균 122.78"
-          },
-          {
-            "name": "ADX 경고",
-            "score": 0,
-            "passed": false,
-            "note": "ADX 17.91 (해당 없음)"
-          },
-          {
-            "name": "하락+대량거래",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.47배, 하락 폭 -16.83"
-          },
-          {
-            "name": "상승+거래량감소",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.47배"
-          },
-          {
-            "name": "거래량 클라이맥스(3배+)",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.47배"
-          }
-        ]
-      },
-      "holding": {
         "is_holding": true,
-        "avg_price": 873.5757,
-        "shares": 7,
+        "avg_price": 273.1769,
+        "shares": 13.0,
         "currency": "USD",
-        "current_close": 988.0900268554688,
-        "pnl_pct": 13.108689591007256,
+        "current_close": 264.8599853515625,
+        "pnl_pct": -3.0445160803997298,
         "stop_loss_hit": false,
-        "target1_hit": true,
+        "target1_hit": false,
         "target2_hit": false,
-        "action": "1차 익절 50% (+10% 도달)"
+        "action": "보유 유지"
       }
     },
     {
@@ -488,244 +497,6 @@
             "score": 0,
             "passed": false,
             "note": "거래량 0.59배"
-          }
-        ]
-      },
-      "holding": {
-        "is_holding": false
-      }
-    },
-    {
-      "ticker": "CPNG",
-      "name": "Coupang",
-      "market": "US",
-      "category": "minor",
-      "status": "ok",
-      "last_date": "2026-05-18",
-      "indicators": {
-        "close": 15.699999809265137,
-        "prev_close": 16.1200008392334,
-        "ema_short": 16.797175299554873,
-        "ema_long": 18.036574226530544,
-        "ema_short_prev": 17.071469172127305,
-        "ema_long_prev": 18.270231668257082,
-        "sma_mid": 19.182600021362305,
-        "sma_long": 24.585549993515016,
-        "bb_upper": 22.70483356629702,
-        "bb_middle": 18.66599988937378,
-        "bb_lower": 14.62716621245054,
-        "bb_upper_prev": 22.935551645664592,
-        "bb_lower_prev": 14.977448175044639,
-        "bb_width": 8.07766735384648,
-        "bb_width_avg": 3.6491127612797865,
-        "adx": 30.413174456260254,
-        "adx_prev": 29.49445121700532,
-        "plus_di": 14.51352683099597,
-        "minus_di": 35.84270104904363,
-        "volume": 12126499.0,
-        "vol_avg20": 23688164.95,
-        "vol_ratio": 0.5119222626824877
-      },
-      "buy": {
-        "total": 0,
-        "verdict": "관망",
-        "details": [
-          {
-            "name": "골든크로스",
-            "score": 0,
-            "passed": false,
-            "note": "단기EMA 16.80 vs 장기EMA 18.04"
-          },
-          {
-            "name": "BB 하단 반등",
-            "score": 0,
-            "passed": false,
-            "note": "종가 15.70 vs BB하단 14.63"
-          },
-          {
-            "name": "BB 밴드워크",
-            "score": 0,
-            "passed": false,
-            "note": "종가 15.70 vs BB상단 22.70, 밴드폭 8.08"
-          },
-          {
-            "name": "ADX>=30 상승추세",
-            "score": 0,
-            "passed": false,
-            "note": "ADX 30.41, +DI 14.51, -DI 35.84"
-          },
-          {
-            "name": "거래량 돌파(2배+)",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.51배, 종가 15.70 vs 전일 16.12"
-          }
-        ]
-      },
-      "warning": {
-        "total": 3,
-        "verdict": "정상",
-        "details": [
-          {
-            "name": "데드크로스",
-            "score": 0,
-            "passed": false,
-            "note": "단기EMA 16.80 vs 장기EMA 18.04"
-          },
-          {
-            "name": "BB 상단 꺾임",
-            "score": 0,
-            "passed": false,
-            "note": "종가 15.70 vs BB상단 22.70"
-          },
-          {
-            "name": "볼린저 스퀴즈",
-            "score": 0,
-            "passed": false,
-            "note": "밴드폭 8.08 vs 60일평균 3.65"
-          },
-          {
-            "name": "ADX 경고",
-            "score": 3,
-            "passed": true,
-            "note": "ADX 30.41 (하락추세)"
-          },
-          {
-            "name": "하락+대량거래",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.51배, 하락 폭 -0.42"
-          },
-          {
-            "name": "상승+거래량감소",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.51배"
-          },
-          {
-            "name": "거래량 클라이맥스(3배+)",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.51배"
-          }
-        ]
-      },
-      "holding": {
-        "is_holding": false
-      }
-    },
-    {
-      "ticker": "NFLX",
-      "name": "Netflix",
-      "market": "US",
-      "category": "minor",
-      "status": "ok",
-      "last_date": "2026-05-18",
-      "indicators": {
-        "close": 89.6500015258789,
-        "prev_close": 87.0199966430664,
-        "ema_short": 88.33177165198663,
-        "ema_long": 90.40962093314863,
-        "ema_short_prev": 88.00221418351356,
-        "ema_long_prev": 90.4855828738756,
-        "sma_mid": 94.2647998046875,
-        "sma_long": 102.43274002075195,
-        "bb_upper": 95.04913351371094,
-        "bb_middle": 89.98549957275391,
-        "bb_lower": 84.92186563179688,
-        "bb_upper_prev": 95.72568497938934,
-        "bb_lower_prev": 84.76331419663606,
-        "bb_width": 10.127267881914065,
-        "bb_width_avg": 20.8358825359985,
-        "adx": 20.656876332234962,
-        "adx_prev": 21.102130065771963,
-        "plus_di": 18.94605565970478,
-        "minus_di": 25.564079773862755,
-        "volume": 33688567.0,
-        "vol_avg20": 36109918.35,
-        "vol_ratio": 0.9329449785366241
-      },
-      "buy": {
-        "total": 0,
-        "verdict": "관망",
-        "details": [
-          {
-            "name": "골든크로스",
-            "score": 0,
-            "passed": false,
-            "note": "단기EMA 88.33 vs 장기EMA 90.41"
-          },
-          {
-            "name": "BB 하단 반등",
-            "score": 0,
-            "passed": false,
-            "note": "종가 89.65 vs BB하단 84.92"
-          },
-          {
-            "name": "BB 밴드워크",
-            "score": 0,
-            "passed": false,
-            "note": "종가 89.65 vs BB상단 95.05, 밴드폭 10.13"
-          },
-          {
-            "name": "ADX>=30 상승추세",
-            "score": 0,
-            "passed": false,
-            "note": "ADX 20.66, +DI 18.95, -DI 25.56"
-          },
-          {
-            "name": "거래량 돌파(2배+)",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.93배, 종가 89.65 vs 전일 87.02"
-          }
-        ]
-      },
-      "warning": {
-        "total": 2,
-        "verdict": "정상",
-        "details": [
-          {
-            "name": "데드크로스",
-            "score": 0,
-            "passed": false,
-            "note": "단기EMA 88.33 vs 장기EMA 90.41"
-          },
-          {
-            "name": "BB 상단 꺾임",
-            "score": 0,
-            "passed": false,
-            "note": "종가 89.65 vs BB상단 95.05"
-          },
-          {
-            "name": "볼린저 스퀴즈",
-            "score": 2,
-            "passed": true,
-            "note": "밴드폭 10.13 vs 60일평균 20.84"
-          },
-          {
-            "name": "ADX 경고",
-            "score": 0,
-            "passed": false,
-            "note": "ADX 20.66 (해당 없음)"
-          },
-          {
-            "name": "하락+대량거래",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.93배, 하락 폭 2.63"
-          },
-          {
-            "name": "상승+거래량감소",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.93배"
-          },
-          {
-            "name": "거래량 클라이맥스(3배+)",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.93배"
           }
         ]
       },
@@ -851,7 +622,7 @@
       "holding": {
         "is_holding": true,
         "avg_price": 74.282,
-        "shares": 35,
+        "shares": 20.0,
         "currency": "USD",
         "current_close": 131.16000366210938,
         "pnl_pct": 76.57037190989658,
@@ -859,125 +630,6 @@
         "target1_hit": true,
         "target2_hit": true,
         "action": "2차 익절 전량 (+20% 도달)"
-      }
-    },
-    {
-      "ticker": "HOOD",
-      "name": "Robinhood",
-      "market": "US",
-      "category": "minor",
-      "status": "ok",
-      "last_date": "2026-05-18",
-      "indicators": {
-        "close": 77.1500015258789,
-        "prev_close": 77.13999938964844,
-        "ema_short": 78.00220990685972,
-        "ema_long": 78.21746091388101,
-        "ema_short_prev": 78.21526200210492,
-        "ema_long_prev": 78.32420685268123,
-        "sma_mid": 76.47550003051758,
-        "sma_long": 105.12057483673095,
-        "bb_upper": 88.09128051231772,
-        "bb_middle": 79.18049964904785,
-        "bb_lower": 70.26971878577797,
-        "bb_upper_prev": 90.17449332525364,
-        "bb_lower_prev": 69.59900597284208,
-        "bb_width": 17.821561726539755,
-        "bb_width_avg": 21.65279251282257,
-        "adx": 14.610870548715681,
-        "adx_prev": 14.486502877854868,
-        "plus_di": 27.34569726766721,
-        "minus_di": 19.70971029527407,
-        "volume": 20011255.0,
-        "vol_avg20": 27552357.75,
-        "vol_ratio": 0.7262991857747637
-      },
-      "buy": {
-        "total": 0,
-        "verdict": "관망",
-        "details": [
-          {
-            "name": "골든크로스",
-            "score": 0,
-            "passed": false,
-            "note": "단기EMA 78.00 vs 장기EMA 78.22"
-          },
-          {
-            "name": "BB 하단 반등",
-            "score": 0,
-            "passed": false,
-            "note": "종가 77.15 vs BB하단 70.27"
-          },
-          {
-            "name": "BB 밴드워크",
-            "score": 0,
-            "passed": false,
-            "note": "종가 77.15 vs BB상단 88.09, 밴드폭 17.82"
-          },
-          {
-            "name": "ADX>=30 상승추세",
-            "score": 0,
-            "passed": false,
-            "note": "ADX 14.61, +DI 27.35, -DI 19.71"
-          },
-          {
-            "name": "거래량 돌파(2배+)",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.73배, 종가 77.15 vs 전일 77.14"
-          }
-        ]
-      },
-      "warning": {
-        "total": 0,
-        "verdict": "정상",
-        "details": [
-          {
-            "name": "데드크로스",
-            "score": 0,
-            "passed": false,
-            "note": "단기EMA 78.00 vs 장기EMA 78.22"
-          },
-          {
-            "name": "BB 상단 꺾임",
-            "score": 0,
-            "passed": false,
-            "note": "종가 77.15 vs BB상단 88.09"
-          },
-          {
-            "name": "볼린저 스퀴즈",
-            "score": 0,
-            "passed": false,
-            "note": "밴드폭 17.82 vs 60일평균 21.65"
-          },
-          {
-            "name": "ADX 경고",
-            "score": 0,
-            "passed": false,
-            "note": "ADX 14.61 (해당 없음)"
-          },
-          {
-            "name": "하락+대량거래",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.73배, 하락 폭 0.01"
-          },
-          {
-            "name": "상승+거래량감소",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.73배"
-          },
-          {
-            "name": "거래량 클라이맥스(3배+)",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.73배"
-          }
-        ]
-      },
-      "holding": {
-        "is_holding": false
       }
     },
     {
@@ -1098,7 +750,7 @@
       "holding": {
         "is_holding": true,
         "avg_price": 37.0726,
-        "shares": 50,
+        "shares": 50.0,
         "currency": "USD",
         "current_close": 41.61000061035156,
         "pnl_pct": 12.239229539745152,
@@ -1226,7 +878,7 @@
       "holding": {
         "is_holding": true,
         "avg_price": 1043.67,
-        "shares": 1,
+        "shares": 1.0,
         "currency": "USD",
         "current_close": 1333.010009765625,
         "pnl_pct": 27.72332344185661,
@@ -1234,6 +886,363 @@
         "target1_hit": true,
         "target2_hit": true,
         "action": "2차 익절 전량 (+20% 도달)"
+      }
+    },
+    {
+      "ticker": "NFLX",
+      "name": "Netflix",
+      "market": "US",
+      "category": "minor",
+      "status": "ok",
+      "last_date": "2026-05-18",
+      "indicators": {
+        "close": 89.6500015258789,
+        "prev_close": 87.0199966430664,
+        "ema_short": 88.33177165198663,
+        "ema_long": 90.40962093314863,
+        "ema_short_prev": 88.00221418351356,
+        "ema_long_prev": 90.4855828738756,
+        "sma_mid": 94.2647998046875,
+        "sma_long": 102.43274002075195,
+        "bb_upper": 95.04913351371094,
+        "bb_middle": 89.98549957275391,
+        "bb_lower": 84.92186563179688,
+        "bb_upper_prev": 95.72568497938934,
+        "bb_lower_prev": 84.76331419663606,
+        "bb_width": 10.127267881914065,
+        "bb_width_avg": 20.8358825359985,
+        "adx": 20.656876332234962,
+        "adx_prev": 21.102130065771963,
+        "plus_di": 18.94605565970478,
+        "minus_di": 25.564079773862755,
+        "volume": 33688567.0,
+        "vol_avg20": 36109918.35,
+        "vol_ratio": 0.9329449785366241
+      },
+      "buy": {
+        "total": 0,
+        "verdict": "관망",
+        "details": [
+          {
+            "name": "골든크로스",
+            "score": 0,
+            "passed": false,
+            "note": "단기EMA 88.33 vs 장기EMA 90.41"
+          },
+          {
+            "name": "BB 하단 반등",
+            "score": 0,
+            "passed": false,
+            "note": "종가 89.65 vs BB하단 84.92"
+          },
+          {
+            "name": "BB 밴드워크",
+            "score": 0,
+            "passed": false,
+            "note": "종가 89.65 vs BB상단 95.05, 밴드폭 10.13"
+          },
+          {
+            "name": "ADX>=30 상승추세",
+            "score": 0,
+            "passed": false,
+            "note": "ADX 20.66, +DI 18.95, -DI 25.56"
+          },
+          {
+            "name": "거래량 돌파(2배+)",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.93배, 종가 89.65 vs 전일 87.02"
+          }
+        ]
+      },
+      "warning": {
+        "total": 2,
+        "verdict": "정상",
+        "details": [
+          {
+            "name": "데드크로스",
+            "score": 0,
+            "passed": false,
+            "note": "단기EMA 88.33 vs 장기EMA 90.41"
+          },
+          {
+            "name": "BB 상단 꺾임",
+            "score": 0,
+            "passed": false,
+            "note": "종가 89.65 vs BB상단 95.05"
+          },
+          {
+            "name": "볼린저 스퀴즈",
+            "score": 2,
+            "passed": true,
+            "note": "밴드폭 10.13 vs 60일평균 20.84"
+          },
+          {
+            "name": "ADX 경고",
+            "score": 0,
+            "passed": false,
+            "note": "ADX 20.66 (해당 없음)"
+          },
+          {
+            "name": "하락+대량거래",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.93배, 하락 폭 2.63"
+          },
+          {
+            "name": "상승+거래량감소",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.93배"
+          },
+          {
+            "name": "거래량 클라이맥스(3배+)",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.93배"
+          }
+        ]
+      },
+      "holding": {
+        "is_holding": false
+      }
+    },
+    {
+      "ticker": "CPNG",
+      "name": "Coupang",
+      "market": "US",
+      "category": "minor",
+      "status": "ok",
+      "last_date": "2026-05-18",
+      "indicators": {
+        "close": 15.699999809265137,
+        "prev_close": 16.1200008392334,
+        "ema_short": 16.797175299554873,
+        "ema_long": 18.036574226530544,
+        "ema_short_prev": 17.071469172127305,
+        "ema_long_prev": 18.270231668257082,
+        "sma_mid": 19.182600021362305,
+        "sma_long": 24.585549993515016,
+        "bb_upper": 22.70483356629702,
+        "bb_middle": 18.66599988937378,
+        "bb_lower": 14.62716621245054,
+        "bb_upper_prev": 22.935551645664592,
+        "bb_lower_prev": 14.977448175044639,
+        "bb_width": 8.07766735384648,
+        "bb_width_avg": 3.6491127612797865,
+        "adx": 30.413174456260254,
+        "adx_prev": 29.49445121700532,
+        "plus_di": 14.51352683099597,
+        "minus_di": 35.84270104904363,
+        "volume": 12126499.0,
+        "vol_avg20": 23688164.95,
+        "vol_ratio": 0.5119222626824877
+      },
+      "buy": {
+        "total": 0,
+        "verdict": "관망",
+        "details": [
+          {
+            "name": "골든크로스",
+            "score": 0,
+            "passed": false,
+            "note": "단기EMA 16.80 vs 장기EMA 18.04"
+          },
+          {
+            "name": "BB 하단 반등",
+            "score": 0,
+            "passed": false,
+            "note": "종가 15.70 vs BB하단 14.63"
+          },
+          {
+            "name": "BB 밴드워크",
+            "score": 0,
+            "passed": false,
+            "note": "종가 15.70 vs BB상단 22.70, 밴드폭 8.08"
+          },
+          {
+            "name": "ADX>=30 상승추세",
+            "score": 0,
+            "passed": false,
+            "note": "ADX 30.41, +DI 14.51, -DI 35.84"
+          },
+          {
+            "name": "거래량 돌파(2배+)",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.51배, 종가 15.70 vs 전일 16.12"
+          }
+        ]
+      },
+      "warning": {
+        "total": 3,
+        "verdict": "정상",
+        "details": [
+          {
+            "name": "데드크로스",
+            "score": 0,
+            "passed": false,
+            "note": "단기EMA 16.80 vs 장기EMA 18.04"
+          },
+          {
+            "name": "BB 상단 꺾임",
+            "score": 0,
+            "passed": false,
+            "note": "종가 15.70 vs BB상단 22.70"
+          },
+          {
+            "name": "볼린저 스퀴즈",
+            "score": 0,
+            "passed": false,
+            "note": "밴드폭 8.08 vs 60일평균 3.65"
+          },
+          {
+            "name": "ADX 경고",
+            "score": 3,
+            "passed": true,
+            "note": "ADX 30.41 (하락추세)"
+          },
+          {
+            "name": "하락+대량거래",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.51배, 하락 폭 -0.42"
+          },
+          {
+            "name": "상승+거래량감소",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.51배"
+          },
+          {
+            "name": "거래량 클라이맥스(3배+)",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.51배"
+          }
+        ]
+      },
+      "holding": {
+        "is_holding": false
+      }
+    },
+    {
+      "ticker": "HOOD",
+      "name": "Robinhood",
+      "market": "US",
+      "category": "minor",
+      "status": "ok",
+      "last_date": "2026-05-18",
+      "indicators": {
+        "close": 77.1500015258789,
+        "prev_close": 77.13999938964844,
+        "ema_short": 78.00220990685972,
+        "ema_long": 78.21746091388101,
+        "ema_short_prev": 78.21526200210492,
+        "ema_long_prev": 78.32420685268123,
+        "sma_mid": 76.47550003051758,
+        "sma_long": 105.12057483673095,
+        "bb_upper": 88.09128051231772,
+        "bb_middle": 79.18049964904785,
+        "bb_lower": 70.26971878577797,
+        "bb_upper_prev": 90.17449332525364,
+        "bb_lower_prev": 69.59900597284208,
+        "bb_width": 17.821561726539755,
+        "bb_width_avg": 21.65279251282257,
+        "adx": 14.610870548715681,
+        "adx_prev": 14.486502877854868,
+        "plus_di": 27.34569726766721,
+        "minus_di": 19.70971029527407,
+        "volume": 20011255.0,
+        "vol_avg20": 27552357.75,
+        "vol_ratio": 0.7262991857747637
+      },
+      "buy": {
+        "total": 0,
+        "verdict": "관망",
+        "details": [
+          {
+            "name": "골든크로스",
+            "score": 0,
+            "passed": false,
+            "note": "단기EMA 78.00 vs 장기EMA 78.22"
+          },
+          {
+            "name": "BB 하단 반등",
+            "score": 0,
+            "passed": false,
+            "note": "종가 77.15 vs BB하단 70.27"
+          },
+          {
+            "name": "BB 밴드워크",
+            "score": 0,
+            "passed": false,
+            "note": "종가 77.15 vs BB상단 88.09, 밴드폭 17.82"
+          },
+          {
+            "name": "ADX>=30 상승추세",
+            "score": 0,
+            "passed": false,
+            "note": "ADX 14.61, +DI 27.35, -DI 19.71"
+          },
+          {
+            "name": "거래량 돌파(2배+)",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.73배, 종가 77.15 vs 전일 77.14"
+          }
+        ]
+      },
+      "warning": {
+        "total": 0,
+        "verdict": "정상",
+        "details": [
+          {
+            "name": "데드크로스",
+            "score": 0,
+            "passed": false,
+            "note": "단기EMA 78.00 vs 장기EMA 78.22"
+          },
+          {
+            "name": "BB 상단 꺾임",
+            "score": 0,
+            "passed": false,
+            "note": "종가 77.15 vs BB상단 88.09"
+          },
+          {
+            "name": "볼린저 스퀴즈",
+            "score": 0,
+            "passed": false,
+            "note": "밴드폭 17.82 vs 60일평균 21.65"
+          },
+          {
+            "name": "ADX 경고",
+            "score": 0,
+            "passed": false,
+            "note": "ADX 14.61 (해당 없음)"
+          },
+          {
+            "name": "하락+대량거래",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.73배, 하락 폭 0.01"
+          },
+          {
+            "name": "상승+거래량감소",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.73배"
+          },
+          {
+            "name": "거래량 클라이맥스(3배+)",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.73배"
+          }
+        ]
+      },
+      "holding": {
+        "is_holding": false
       }
     },
     {
@@ -1361,30 +1370,30 @@
       "market": "KR",
       "category": "minor",
       "status": "ok",
-      "last_date": "2026-05-18",
+      "last_date": "2026-05-19",
       "indicators": {
-        "close": 112000.0,
-        "prev_close": 118700.0,
-        "ema_short": 115360.81408144486,
-        "ema_long": 107377.75672292904,
-        "ema_short_prev": 117041.22112216728,
-        "ema_long_prev": 106891.20479902683,
-        "sma_mid": 94021.74127604166,
-        "sma_long": 92948.0576171875,
-        "bb_upper": 126739.70617815776,
-        "bb_middle": 107000.0,
-        "bb_lower": 87260.29382184224,
-        "bb_upper_prev": 126702.65171090717,
-        "bb_lower_prev": 85217.34828909283,
-        "bb_width": 39479.41235631553,
-        "bb_width_avg": 30663.12492059482,
-        "adx": 42.60039307364742,
-        "adx_prev": 43.968799157149434,
-        "plus_di": 34.37837320849503,
-        "minus_di": 20.71026771456726,
-        "volume": 93870.0,
-        "vol_avg20": 140950.5,
-        "vol_ratio": 0.665978481807443
+        "close": 107600.0,
+        "prev_close": 112000.0,
+        "ema_short": 112773.87605429659,
+        "ema_long": 107398.92274931676,
+        "ema_short_prev": 115360.81408144486,
+        "ema_long_prev": 107377.75672292904,
+        "sma_mid": 94084.30690104167,
+        "sma_long": 93089.55442708333,
+        "bb_upper": 126042.84787808449,
+        "bb_middle": 107870.0,
+        "bb_lower": 89697.15212191551,
+        "bb_upper_prev": 126739.70617815776,
+        "bb_lower_prev": 87260.29382184224,
+        "bb_width": 36345.69575616898,
+        "bb_width_avg": 30789.489047096104,
+        "adx": 41.32973028182412,
+        "adx_prev": 42.60039307364742,
+        "plus_di": 32.20161064643167,
+        "minus_di": 19.39893936467781,
+        "volume": 15839.0,
+        "vol_avg20": 138623.3,
+        "vol_ratio": 0.1142592911869794
       },
       "buy": {
         "total": 3,
@@ -1394,31 +1403,31 @@
             "name": "골든크로스",
             "score": 0,
             "passed": false,
-            "note": "단기EMA 115360.81 vs 장기EMA 107377.76"
+            "note": "단기EMA 112773.88 vs 장기EMA 107398.92"
           },
           {
             "name": "BB 하단 반등",
             "score": 0,
             "passed": false,
-            "note": "종가 112000.00 vs BB하단 87260.29"
+            "note": "종가 107600.00 vs BB하단 89697.15"
           },
           {
             "name": "BB 밴드워크",
             "score": 0,
             "passed": false,
-            "note": "종가 112000.00 vs BB상단 126739.71, 밴드폭 39479.41"
+            "note": "종가 107600.00 vs BB상단 126042.85, 밴드폭 36345.70"
           },
           {
             "name": "ADX>=30 상승추세",
             "score": 3,
             "passed": true,
-            "note": "ADX 42.60, +DI 34.38, -DI 20.71"
+            "note": "ADX 41.33, +DI 32.20, -DI 19.40"
           },
           {
             "name": "거래량 돌파(2배+)",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.67배, 종가 112000.00 vs 전일 118700.00"
+            "note": "거래량 0.11배, 종가 107600.00 vs 전일 112000.00"
           }
         ]
       },
@@ -1430,171 +1439,43 @@
             "name": "데드크로스",
             "score": 0,
             "passed": false,
-            "note": "단기EMA 115360.81 vs 장기EMA 107377.76"
+            "note": "단기EMA 112773.88 vs 장기EMA 107398.92"
           },
           {
             "name": "BB 상단 꺾임",
             "score": 0,
             "passed": false,
-            "note": "종가 112000.00 vs BB상단 126739.71"
+            "note": "종가 107600.00 vs BB상단 126042.85"
           },
           {
             "name": "볼린저 스퀴즈",
             "score": 0,
             "passed": false,
-            "note": "밴드폭 39479.41 vs 60일평균 30663.12"
+            "note": "밴드폭 36345.70 vs 60일평균 30789.49"
           },
           {
             "name": "ADX 경고",
             "score": 0,
             "passed": false,
-            "note": "ADX 42.60 (해당 없음)"
+            "note": "ADX 41.33 (해당 없음)"
           },
           {
             "name": "하락+대량거래",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.67배, 하락 폭 -6700.00"
+            "note": "거래량 0.11배, 하락 폭 -4400.00"
           },
           {
             "name": "상승+거래량감소",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.67배"
+            "note": "거래량 0.11배"
           },
           {
             "name": "거래량 클라이맥스(3배+)",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.67배"
-          }
-        ]
-      },
-      "holding": {
-        "is_holding": true,
-        "avg_price": 112900,
-        "shares": 2,
-        "currency": "KRW",
-        "current_close": 112000.0,
-        "pnl_pct": -0.7971656333038087,
-        "stop_loss_hit": false,
-        "target1_hit": false,
-        "target2_hit": false,
-        "action": "보유 유지"
-      }
-    },
-    {
-      "ticker": "032350.KS",
-      "name": "롯데관광개발",
-      "market": "KR",
-      "category": "minor",
-      "status": "ok",
-      "last_date": "2026-05-18",
-      "indicators": {
-        "close": 19220.0,
-        "prev_close": 19570.0,
-        "ema_short": 19366.78924398978,
-        "ema_long": 19630.067212494927,
-        "ema_short_prev": 19440.18386598467,
-        "ema_long_prev": 19673.232182231233,
-        "sma_mid": 19858.166666666668,
-        "sma_long": 21214.833333333332,
-        "bb_upper": 22124.40526419458,
-        "bb_middle": 20107.0,
-        "bb_lower": 18089.59473580542,
-        "bb_upper_prev": 22134.34469476945,
-        "bb_lower_prev": 18058.65530523055,
-        "bb_width": 4034.8105283891564,
-        "bb_width_avg": 6855.249558697652,
-        "adx": 16.700473452421228,
-        "adx_prev": 17.31663772259712,
-        "plus_di": 23.724646367199494,
-        "minus_di": 28.24060206761541,
-        "volume": 804006.0,
-        "vol_avg20": 673481.05,
-        "vol_ratio": 1.193806418161283
-      },
-      "buy": {
-        "total": 0,
-        "verdict": "관망",
-        "details": [
-          {
-            "name": "골든크로스",
-            "score": 0,
-            "passed": false,
-            "note": "단기EMA 19366.79 vs 장기EMA 19630.07"
-          },
-          {
-            "name": "BB 하단 반등",
-            "score": 0,
-            "passed": false,
-            "note": "종가 19220.00 vs BB하단 18089.59"
-          },
-          {
-            "name": "BB 밴드워크",
-            "score": 0,
-            "passed": false,
-            "note": "종가 19220.00 vs BB상단 22124.41, 밴드폭 4034.81"
-          },
-          {
-            "name": "ADX>=30 상승추세",
-            "score": 0,
-            "passed": false,
-            "note": "ADX 16.70, +DI 23.72, -DI 28.24"
-          },
-          {
-            "name": "거래량 돌파(2배+)",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 1.19배, 종가 19220.00 vs 전일 19570.00"
-          }
-        ]
-      },
-      "warning": {
-        "total": 0,
-        "verdict": "정상",
-        "details": [
-          {
-            "name": "데드크로스",
-            "score": 0,
-            "passed": false,
-            "note": "단기EMA 19366.79 vs 장기EMA 19630.07"
-          },
-          {
-            "name": "BB 상단 꺾임",
-            "score": 0,
-            "passed": false,
-            "note": "종가 19220.00 vs BB상단 22124.41"
-          },
-          {
-            "name": "볼린저 스퀴즈",
-            "score": 0,
-            "passed": false,
-            "note": "밴드폭 4034.81 vs 60일평균 6855.25"
-          },
-          {
-            "name": "ADX 경고",
-            "score": 0,
-            "passed": false,
-            "note": "ADX 16.70 (해당 없음)"
-          },
-          {
-            "name": "하락+대량거래",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 1.19배, 하락 폭 -350.00"
-          },
-          {
-            "name": "상승+거래량감소",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 1.19배"
-          },
-          {
-            "name": "거래량 클라이맥스(3배+)",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 1.19배"
+            "note": "거래량 0.11배"
           }
         ]
       },
@@ -1603,69 +1484,69 @@
       }
     },
     {
-      "ticker": "012450.KS",
-      "name": "한화에어로스페이스",
+      "ticker": "032350.KS",
+      "name": "롯데관광개발",
       "market": "KR",
       "category": "minor",
       "status": "ok",
-      "last_date": "2026-05-18",
+      "last_date": "2026-05-19",
       "indicators": {
-        "close": 1227000.0,
-        "prev_close": 1216000.0,
-        "ema_short": 1261935.3463106805,
-        "ema_long": 1346607.8198425416,
-        "ema_short_prev": 1279403.0194660206,
-        "ema_long_prev": 1359198.116668072,
-        "sma_mid": 1378250.0,
-        "sma_long": 1214550.8619791667,
-        "bb_upper": 1522842.805821106,
-        "bb_middle": 1369250.0,
-        "bb_lower": 1215657.194178894,
-        "bb_upper_prev": 1536087.0191510592,
-        "bb_lower_prev": 1231612.9808489408,
-        "bb_width": 307185.61164221214,
-        "bb_width_avg": 319570.267086634,
-        "adx": 21.29578890286145,
-        "adx_prev": 20.350057839685977,
-        "plus_di": 15.10036985208626,
-        "minus_di": 30.376023499148555,
-        "volume": 174679.0,
-        "vol_avg20": 214999.0,
-        "vol_ratio": 0.8124642440197396
+        "close": 19190.0,
+        "prev_close": 19220.0,
+        "ema_short": 19307.859495993187,
+        "ema_long": 19588.15604940017,
+        "ema_short_prev": 19366.78924398978,
+        "ema_long_prev": 19630.067212494927,
+        "sma_mid": 19764.666666666668,
+        "sma_long": 21212.75,
+        "bb_upper": 22128.671122375155,
+        "bb_middle": 20074.5,
+        "bb_lower": 18020.328877624845,
+        "bb_upper_prev": 22124.40526419458,
+        "bb_lower_prev": 18089.59473580542,
+        "bb_width": 4108.342244750311,
+        "bb_width_avg": 6817.692059438225,
+        "adx": 16.128320915829324,
+        "adx_prev": 16.700473452421228,
+        "plus_di": 22.43008427626307,
+        "minus_di": 26.69962175979085,
+        "volume": 186083.0,
+        "vol_avg20": 627664.2,
+        "vol_ratio": 0.2964690355129383
       },
       "buy": {
-        "total": 3,
+        "total": 0,
         "verdict": "관망",
         "details": [
           {
             "name": "골든크로스",
             "score": 0,
             "passed": false,
-            "note": "단기EMA 1261935.35 vs 장기EMA 1346607.82"
+            "note": "단기EMA 19307.86 vs 장기EMA 19588.16"
           },
           {
             "name": "BB 하단 반등",
-            "score": 3,
-            "passed": true,
-            "note": "종가 1227000.00 vs BB하단 1215657.19"
+            "score": 0,
+            "passed": false,
+            "note": "종가 19190.00 vs BB하단 18020.33"
           },
           {
             "name": "BB 밴드워크",
             "score": 0,
             "passed": false,
-            "note": "종가 1227000.00 vs BB상단 1522842.81, 밴드폭 307185.61"
+            "note": "종가 19190.00 vs BB상단 22128.67, 밴드폭 4108.34"
           },
           {
             "name": "ADX>=30 상승추세",
             "score": 0,
             "passed": false,
-            "note": "ADX 21.30, +DI 15.10, -DI 30.38"
+            "note": "ADX 16.13, +DI 22.43, -DI 26.70"
           },
           {
             "name": "거래량 돌파(2배+)",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.81배, 종가 1227000.00 vs 전일 1216000.00"
+            "note": "거래량 0.30배, 종가 19190.00 vs 전일 19220.00"
           }
         ]
       },
@@ -1677,171 +1558,43 @@
             "name": "데드크로스",
             "score": 0,
             "passed": false,
-            "note": "단기EMA 1261935.35 vs 장기EMA 1346607.82"
+            "note": "단기EMA 19307.86 vs 장기EMA 19588.16"
           },
           {
             "name": "BB 상단 꺾임",
             "score": 0,
             "passed": false,
-            "note": "종가 1227000.00 vs BB상단 1522842.81"
+            "note": "종가 19190.00 vs BB상단 22128.67"
           },
           {
             "name": "볼린저 스퀴즈",
             "score": 0,
             "passed": false,
-            "note": "밴드폭 307185.61 vs 60일평균 319570.27"
+            "note": "밴드폭 4108.34 vs 60일평균 6817.69"
           },
           {
             "name": "ADX 경고",
             "score": 0,
             "passed": false,
-            "note": "ADX 21.30 (해당 없음)"
+            "note": "ADX 16.13 (해당 없음)"
           },
           {
             "name": "하락+대량거래",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.81배, 하락 폭 11000.00"
+            "note": "거래량 0.30배, 하락 폭 -30.00"
           },
           {
             "name": "상승+거래량감소",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.81배"
+            "note": "거래량 0.30배"
           },
           {
             "name": "거래량 클라이맥스(3배+)",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.81배"
-          }
-        ]
-      },
-      "holding": {
-        "is_holding": true,
-        "avg_price": 1334000,
-        "shares": 1,
-        "currency": "KRW",
-        "current_close": 1227000.0,
-        "pnl_pct": -8.020989505247377,
-        "stop_loss_hit": true,
-        "target1_hit": false,
-        "target2_hit": false,
-        "action": "손절 무조건 정리 (-7% 도달)"
-      }
-    },
-    {
-      "ticker": "108490.KQ",
-      "name": "로보티즈",
-      "market": "KR",
-      "category": "minor",
-      "status": "ok",
-      "last_date": "2026-05-18",
-      "indicators": {
-        "close": 306000.0,
-        "prev_close": 328500.0,
-        "ema_short": 327834.7994651284,
-        "ema_long": 315244.8949478455,
-        "ema_short_prev": 338752.19919769256,
-        "ema_long_prev": 316218.0417844608,
-        "sma_mid": 275775.0,
-        "sma_long": 271040.0,
-        "bb_upper": 374167.68559879845,
-        "bb_middle": 315725.0,
-        "bb_lower": 257282.31440120158,
-        "bb_upper_prev": 375448.352296868,
-        "bb_lower_prev": 252551.647703132,
-        "bb_width": 116885.37119759686,
-        "bb_width_avg": 82508.51522934932,
-        "adx": 35.51057273831752,
-        "adx_prev": 36.404331268203975,
-        "plus_di": 22.633375592449944,
-        "minus_di": 13.903976671906008,
-        "volume": 345034.0,
-        "vol_avg20": 451174.4,
-        "vol_ratio": 0.7647464040512937
-      },
-      "buy": {
-        "total": 3,
-        "verdict": "관망",
-        "details": [
-          {
-            "name": "골든크로스",
-            "score": 0,
-            "passed": false,
-            "note": "단기EMA 327834.80 vs 장기EMA 315244.89"
-          },
-          {
-            "name": "BB 하단 반등",
-            "score": 0,
-            "passed": false,
-            "note": "종가 306000.00 vs BB하단 257282.31"
-          },
-          {
-            "name": "BB 밴드워크",
-            "score": 0,
-            "passed": false,
-            "note": "종가 306000.00 vs BB상단 374167.69, 밴드폭 116885.37"
-          },
-          {
-            "name": "ADX>=30 상승추세",
-            "score": 3,
-            "passed": true,
-            "note": "ADX 35.51, +DI 22.63, -DI 13.90"
-          },
-          {
-            "name": "거래량 돌파(2배+)",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.76배, 종가 306000.00 vs 전일 328500.00"
-          }
-        ]
-      },
-      "warning": {
-        "total": 0,
-        "verdict": "정상",
-        "details": [
-          {
-            "name": "데드크로스",
-            "score": 0,
-            "passed": false,
-            "note": "단기EMA 327834.80 vs 장기EMA 315244.89"
-          },
-          {
-            "name": "BB 상단 꺾임",
-            "score": 0,
-            "passed": false,
-            "note": "종가 306000.00 vs BB상단 374167.69"
-          },
-          {
-            "name": "볼린저 스퀴즈",
-            "score": 0,
-            "passed": false,
-            "note": "밴드폭 116885.37 vs 60일평균 82508.52"
-          },
-          {
-            "name": "ADX 경고",
-            "score": 0,
-            "passed": false,
-            "note": "ADX 35.51 (해당 없음)"
-          },
-          {
-            "name": "하락+대량거래",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.76배, 하락 폭 -22500.00"
-          },
-          {
-            "name": "상승+거래량감소",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.76배"
-          },
-          {
-            "name": "거래량 클라이맥스(3배+)",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.76배"
+            "note": "거래량 0.30배"
           }
         ]
       },
@@ -1855,30 +1608,30 @@
       "market": "KR",
       "category": "minor",
       "status": "ok",
-      "last_date": "2026-05-18",
+      "last_date": "2026-05-19",
       "indicators": {
-        "close": 402000.0,
-        "prev_close": 404000.0,
-        "ema_short": 410387.1547588044,
-        "ema_long": 412854.0916749501,
-        "ema_short_prev": 414580.7321382066,
-        "ema_long_prev": 413996.6276407343,
-        "sma_mid": 362138.8359375,
-        "sma_long": 306039.35065104166,
-        "bb_upper": 460622.24718298914,
-        "bb_middle": 426000.0,
-        "bb_lower": 391377.75281701086,
-        "bb_upper_prev": 459917.4540999909,
-        "bb_lower_prev": 393332.5459000091,
-        "bb_width": 69244.49436597829,
-        "bb_width_avg": 94889.6056697305,
-        "adx": 28.305671655500472,
-        "adx_prev": 29.9493766519282,
-        "plus_di": 17.979420506789015,
-        "minus_di": 20.660035346182003,
-        "volume": 195060.0,
-        "vol_avg20": 311569.7,
-        "vol_ratio": 0.6260557429043967
+        "close": 391500.0,
+        "prev_close": 402000.0,
+        "ema_short": 404091.4365058697,
+        "ema_long": 410820.36865828815,
+        "ema_short_prev": 410387.1547588044,
+        "ema_long_prev": 412854.0916749501,
+        "sma_mid": 363927.3296875,
+        "sma_long": 307439.59921875,
+        "bb_upper": 462288.9904348737,
+        "bb_middle": 424600.0,
+        "bb_lower": 386911.0095651263,
+        "bb_upper_prev": 460622.24718298914,
+        "bb_lower_prev": 391377.75281701086,
+        "bb_width": 75377.98086974735,
+        "bb_width_avg": 95493.63352458838,
+        "adx": 26.779374158734793,
+        "adx_prev": 28.30567165541103,
+        "plus_di": 17.15020541677373,
+        "minus_di": 19.707189671161096,
+        "volume": 40876.0,
+        "vol_avg20": 306376.45,
+        "vol_ratio": 0.13341756522082554
       },
       "buy": {
         "total": 0,
@@ -1888,79 +1641,79 @@
             "name": "골든크로스",
             "score": 0,
             "passed": false,
-            "note": "단기EMA 410387.15 vs 장기EMA 412854.09"
+            "note": "단기EMA 404091.44 vs 장기EMA 410820.37"
           },
           {
             "name": "BB 하단 반등",
             "score": 0,
             "passed": false,
-            "note": "종가 402000.00 vs BB하단 391377.75"
+            "note": "종가 391500.00 vs BB하단 386911.01"
           },
           {
             "name": "BB 밴드워크",
             "score": 0,
             "passed": false,
-            "note": "종가 402000.00 vs BB상단 460622.25, 밴드폭 69244.49"
+            "note": "종가 391500.00 vs BB상단 462288.99, 밴드폭 75377.98"
           },
           {
             "name": "ADX>=30 상승추세",
             "score": 0,
             "passed": false,
-            "note": "ADX 28.31, +DI 17.98, -DI 20.66"
+            "note": "ADX 26.78, +DI 17.15, -DI 19.71"
           },
           {
             "name": "거래량 돌파(2배+)",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.63배, 종가 402000.00 vs 전일 404000.00"
+            "note": "거래량 0.13배, 종가 391500.00 vs 전일 402000.00"
           }
         ]
       },
       "warning": {
-        "total": 5,
-        "verdict": "주의",
+        "total": 0,
+        "verdict": "정상",
         "details": [
           {
             "name": "데드크로스",
-            "score": 5,
-            "passed": true,
-            "note": "단기EMA 410387.15 vs 장기EMA 412854.09"
+            "score": 0,
+            "passed": false,
+            "note": "단기EMA 404091.44 vs 장기EMA 410820.37"
           },
           {
             "name": "BB 상단 꺾임",
             "score": 0,
             "passed": false,
-            "note": "종가 402000.00 vs BB상단 460622.25"
+            "note": "종가 391500.00 vs BB상단 462288.99"
           },
           {
             "name": "볼린저 스퀴즈",
             "score": 0,
             "passed": false,
-            "note": "밴드폭 69244.49 vs 60일평균 94889.61"
+            "note": "밴드폭 75377.98 vs 60일평균 95493.63"
           },
           {
             "name": "ADX 경고",
             "score": 0,
             "passed": false,
-            "note": "ADX 28.31 (해당 없음)"
+            "note": "ADX 26.78 (해당 없음)"
           },
           {
             "name": "하락+대량거래",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.63배, 하락 폭 -2000.00"
+            "note": "거래량 0.13배, 하락 폭 -10500.00"
           },
           {
             "name": "상승+거래량감소",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.63배"
+            "note": "거래량 0.13배"
           },
           {
             "name": "거래량 클라이맥스(3배+)",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.63배"
+            "note": "거래량 0.13배"
           }
         ]
       },
@@ -1974,30 +1727,30 @@
       "market": "KR",
       "category": "minor",
       "status": "ok",
-      "last_date": "2026-05-18",
+      "last_date": "2026-05-19",
       "indicators": {
-        "close": 92200.0,
-        "prev_close": 97100.0,
-        "ema_short": 95720.7732849416,
-        "ema_long": 91359.11928438797,
-        "ema_short_prev": 97481.1599274124,
-        "ema_long_prev": 91270.60552484986,
-        "sma_mid": 79890.712890625,
-        "sma_long": 72487.42760416666,
-        "bb_upper": 101152.58230019244,
-        "bb_middle": 91470.0,
-        "bb_lower": 81787.41769980756,
-        "bb_upper_prev": 101222.50955609907,
-        "bb_lower_prev": 80947.49044390093,
-        "bb_width": 19365.164600384887,
-        "bb_width_avg": 14604.011152132673,
-        "adx": 38.63159188461578,
-        "adx_prev": 39.646432862787215,
-        "plus_di": 29.66131358260228,
-        "minus_di": 17.630827100734187,
-        "volume": 209820.0,
-        "vol_avg20": 285229.5,
-        "vol_ratio": 0.735618160113172
+        "close": 92800.0,
+        "prev_close": 92200.0,
+        "ema_short": 94747.18218996108,
+        "ema_long": 91496.34601920815,
+        "ema_short_prev": 95720.7732849416,
+        "ema_long_prev": 91359.11928438797,
+        "sma_mid": 80222.37890625,
+        "sma_long": 72726.62223307292,
+        "bb_upper": 101224.33234025544,
+        "bb_middle": 91770.0,
+        "bb_lower": 82315.66765974456,
+        "bb_upper_prev": 101152.58230019244,
+        "bb_lower_prev": 81787.41769980756,
+        "bb_width": 18908.664680510876,
+        "bb_width_avg": 14734.926450531866,
+        "adx": 37.81198264168509,
+        "adx_prev": 38.63159188461578,
+        "plus_di": 28.090732008289923,
+        "minus_di": 16.091999897640928,
+        "volume": 48946.0,
+        "vol_avg20": 268757.3,
+        "vol_ratio": 0.18211970428338134
       },
       "buy": {
         "total": 3,
@@ -2007,79 +1760,79 @@
             "name": "골든크로스",
             "score": 0,
             "passed": false,
-            "note": "단기EMA 95720.77 vs 장기EMA 91359.12"
+            "note": "단기EMA 94747.18 vs 장기EMA 91496.35"
           },
           {
             "name": "BB 하단 반등",
             "score": 0,
             "passed": false,
-            "note": "종가 92200.00 vs BB하단 81787.42"
+            "note": "종가 92800.00 vs BB하단 82315.67"
           },
           {
             "name": "BB 밴드워크",
             "score": 0,
             "passed": false,
-            "note": "종가 92200.00 vs BB상단 101152.58, 밴드폭 19365.16"
+            "note": "종가 92800.00 vs BB상단 101224.33, 밴드폭 18908.66"
           },
           {
             "name": "ADX>=30 상승추세",
             "score": 3,
             "passed": true,
-            "note": "ADX 38.63, +DI 29.66, -DI 17.63"
+            "note": "ADX 37.81, +DI 28.09, -DI 16.09"
           },
           {
             "name": "거래량 돌파(2배+)",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.74배, 종가 92200.00 vs 전일 97100.00"
+            "note": "거래량 0.18배, 종가 92800.00 vs 전일 92200.00"
           }
         ]
       },
       "warning": {
-        "total": 0,
+        "total": 3,
         "verdict": "정상",
         "details": [
           {
             "name": "데드크로스",
             "score": 0,
             "passed": false,
-            "note": "단기EMA 95720.77 vs 장기EMA 91359.12"
+            "note": "단기EMA 94747.18 vs 장기EMA 91496.35"
           },
           {
             "name": "BB 상단 꺾임",
             "score": 0,
             "passed": false,
-            "note": "종가 92200.00 vs BB상단 101152.58"
+            "note": "종가 92800.00 vs BB상단 101224.33"
           },
           {
             "name": "볼린저 스퀴즈",
             "score": 0,
             "passed": false,
-            "note": "밴드폭 19365.16 vs 60일평균 14604.01"
+            "note": "밴드폭 18908.66 vs 60일평균 14734.93"
           },
           {
             "name": "ADX 경고",
             "score": 0,
             "passed": false,
-            "note": "ADX 38.63 (해당 없음)"
+            "note": "ADX 37.81 (해당 없음)"
           },
           {
             "name": "하락+대량거래",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.74배, 하락 폭 -4900.00"
+            "note": "거래량 0.18배, 하락 폭 600.00"
           },
           {
             "name": "상승+거래량감소",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.74배"
+            "score": 3,
+            "passed": true,
+            "note": "거래량 0.18배"
           },
           {
             "name": "거래량 클라이맥스(3배+)",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.74배"
+            "note": "거래량 0.18배"
           }
         ]
       },
@@ -2093,30 +1846,30 @@
       "market": "KR",
       "category": "minor",
       "status": "ok",
-      "last_date": "2026-05-18",
+      "last_date": "2026-05-19",
       "indicators": {
-        "close": 100500.0,
-        "prev_close": 101300.0,
-        "ema_short": 101109.10986613845,
-        "ema_long": 97574.82967611265,
-        "ema_short_prev": 101413.66479920765,
-        "ema_long_prev": 97266.9170104403,
-        "sma_mid": 86986.66666666667,
-        "sma_long": 73052.5,
-        "bb_upper": 105001.2051747709,
-        "bb_middle": 98570.0,
-        "bb_lower": 92138.7948252291,
-        "bb_upper_prev": 104807.58069141777,
-        "bb_lower_prev": 91872.41930858223,
-        "bb_width": 12862.41034954181,
-        "bb_width_avg": 18318.120795125196,
-        "adx": 26.857790136632477,
-        "adx_prev": 27.30795046321588,
-        "plus_di": 24.23374771334764,
-        "minus_di": 15.82014484468983,
-        "volume": 1231431.0,
-        "vol_avg20": 1012209.75,
-        "vol_ratio": 1.2165769001928701
+        "close": 97100.0,
+        "prev_close": 100500.0,
+        "ema_short": 99772.73991075897,
+        "ema_long": 97529.60780219718,
+        "ema_short_prev": 101109.10986613845,
+        "ema_long_prev": 97574.82967611265,
+        "sma_mid": 87246.66666666667,
+        "sma_long": 73416.66666666667,
+        "bb_upper": 104972.47630556584,
+        "bb_middle": 98510.0,
+        "bb_lower": 92047.52369443416,
+        "bb_upper_prev": 105001.2051747709,
+        "bb_lower_prev": 92138.7948252291,
+        "bb_width": 12924.95261113168,
+        "bb_width_avg": 18071.09580488674,
+        "adx": 26.20179665698109,
+        "adx_prev": 26.857790136632477,
+        "plus_di": 22.898219874531055,
+        "minus_di": 16.019880893316685,
+        "volume": 210957.0,
+        "vol_avg20": 978225.55,
+        "vol_ratio": 0.21565271935495856
       },
       "buy": {
         "total": 0,
@@ -2126,31 +1879,31 @@
             "name": "골든크로스",
             "score": 0,
             "passed": false,
-            "note": "단기EMA 101109.11 vs 장기EMA 97574.83"
+            "note": "단기EMA 99772.74 vs 장기EMA 97529.61"
           },
           {
             "name": "BB 하단 반등",
             "score": 0,
             "passed": false,
-            "note": "종가 100500.00 vs BB하단 92138.79"
+            "note": "종가 97100.00 vs BB하단 92047.52"
           },
           {
             "name": "BB 밴드워크",
             "score": 0,
             "passed": false,
-            "note": "종가 100500.00 vs BB상단 105001.21, 밴드폭 12862.41"
+            "note": "종가 97100.00 vs BB상단 104972.48, 밴드폭 12924.95"
           },
           {
             "name": "ADX>=30 상승추세",
             "score": 0,
             "passed": false,
-            "note": "ADX 26.86, +DI 24.23, -DI 15.82"
+            "note": "ADX 26.20, +DI 22.90, -DI 16.02"
           },
           {
             "name": "거래량 돌파(2배+)",
             "score": 0,
             "passed": false,
-            "note": "거래량 1.22배, 종가 100500.00 vs 전일 101300.00"
+            "note": "거래량 0.22배, 종가 97100.00 vs 전일 100500.00"
           }
         ]
       },
@@ -2162,43 +1915,43 @@
             "name": "데드크로스",
             "score": 0,
             "passed": false,
-            "note": "단기EMA 101109.11 vs 장기EMA 97574.83"
+            "note": "단기EMA 99772.74 vs 장기EMA 97529.61"
           },
           {
             "name": "BB 상단 꺾임",
             "score": 0,
             "passed": false,
-            "note": "종가 100500.00 vs BB상단 105001.21"
+            "note": "종가 97100.00 vs BB상단 104972.48"
           },
           {
             "name": "볼린저 스퀴즈",
             "score": 0,
             "passed": false,
-            "note": "밴드폭 12862.41 vs 60일평균 18318.12"
+            "note": "밴드폭 12924.95 vs 60일평균 18071.10"
           },
           {
             "name": "ADX 경고",
             "score": 0,
             "passed": false,
-            "note": "ADX 26.86 (해당 없음)"
+            "note": "ADX 26.20 (해당 없음)"
           },
           {
             "name": "하락+대량거래",
             "score": 0,
             "passed": false,
-            "note": "거래량 1.22배, 하락 폭 -800.00"
+            "note": "거래량 0.22배, 하락 폭 -3400.00"
           },
           {
             "name": "상승+거래량감소",
             "score": 0,
             "passed": false,
-            "note": "거래량 1.22배"
+            "note": "거래량 0.22배"
           },
           {
             "name": "거래량 클라이맥스(3배+)",
             "score": 0,
             "passed": false,
-            "note": "거래량 1.22배"
+            "note": "거래량 0.22배"
           }
         ]
       },
@@ -2212,30 +1965,30 @@
       "market": "KR",
       "category": "minor",
       "status": "ok",
-      "last_date": "2026-05-18",
+      "last_date": "2026-05-19",
       "indicators": {
-        "close": 1386000.0,
-        "prev_close": 1419000.0,
-        "ema_short": 1420041.490431292,
-        "ema_long": 1477749.9606543987,
-        "ema_short_prev": 1437062.235646938,
-        "ema_long_prev": 1487407.8512495984,
-        "sma_mid": 1571266.6666666667,
-        "sma_long": 1661833.284375,
-        "bb_upper": 1610761.4961030085,
-        "bb_middle": 1491150.0,
-        "bb_lower": 1371538.5038969915,
-        "bb_upper_prev": 1623828.0095561896,
-        "bb_lower_prev": 1381471.9904438104,
-        "bb_width": 239222.99220601702,
-        "bb_width_avg": 189165.69025045232,
-        "adx": 26.818445362817606,
-        "adx_prev": 25.3050522517866,
-        "plus_di": 11.451295287476634,
-        "minus_di": 31.351329506207467,
-        "volume": 54234.0,
-        "vol_avg20": 67571.15,
-        "vol_ratio": 0.8026206450533994
+        "close": 1365000.0,
+        "prev_close": 1386000.0,
+        "ema_short": 1401694.3269541948,
+        "ema_long": 1467011.8691635036,
+        "ema_short_prev": 1420041.490431292,
+        "ema_long_prev": 1477749.9606543987,
+        "sma_mid": 1565350.0,
+        "sma_long": 1657563.85625,
+        "bb_upper": 1599846.0995219348,
+        "bb_middle": 1479350.0,
+        "bb_lower": 1358853.9004780652,
+        "bb_upper_prev": 1610761.4961030085,
+        "bb_lower_prev": 1371538.5038969915,
+        "bb_width": 240992.1990438695,
+        "bb_width_avg": 189118.34260711758,
+        "adx": 28.223738965917825,
+        "adx_prev": 26.818445362817606,
+        "plus_di": 10.962247398512957,
+        "minus_di": 30.012415337433637,
+        "volume": 11031.0,
+        "vol_avg20": 66809.65,
+        "vol_ratio": 0.1651108784434584
       },
       "buy": {
         "total": 0,
@@ -2245,31 +1998,31 @@
             "name": "골든크로스",
             "score": 0,
             "passed": false,
-            "note": "단기EMA 1420041.49 vs 장기EMA 1477749.96"
+            "note": "단기EMA 1401694.33 vs 장기EMA 1467011.87"
           },
           {
             "name": "BB 하단 반등",
             "score": 0,
             "passed": false,
-            "note": "종가 1386000.00 vs BB하단 1371538.50"
+            "note": "종가 1365000.00 vs BB하단 1358853.90"
           },
           {
             "name": "BB 밴드워크",
             "score": 0,
             "passed": false,
-            "note": "종가 1386000.00 vs BB상단 1610761.50, 밴드폭 239222.99"
+            "note": "종가 1365000.00 vs BB상단 1599846.10, 밴드폭 240992.20"
           },
           {
             "name": "ADX>=30 상승추세",
             "score": 0,
             "passed": false,
-            "note": "ADX 26.82, +DI 11.45, -DI 31.35"
+            "note": "ADX 28.22, +DI 10.96, -DI 30.01"
           },
           {
             "name": "거래량 돌파(2배+)",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.80배, 종가 1386000.00 vs 전일 1419000.00"
+            "note": "거래량 0.17배, 종가 1365000.00 vs 전일 1386000.00"
           }
         ]
       },
@@ -2281,43 +2034,281 @@
             "name": "데드크로스",
             "score": 0,
             "passed": false,
-            "note": "단기EMA 1420041.49 vs 장기EMA 1477749.96"
+            "note": "단기EMA 1401694.33 vs 장기EMA 1467011.87"
           },
           {
             "name": "BB 상단 꺾임",
             "score": 0,
             "passed": false,
-            "note": "종가 1386000.00 vs BB상단 1610761.50"
+            "note": "종가 1365000.00 vs BB상단 1599846.10"
           },
           {
             "name": "볼린저 스퀴즈",
             "score": 0,
             "passed": false,
-            "note": "밴드폭 239222.99 vs 60일평균 189165.69"
+            "note": "밴드폭 240992.20 vs 60일평균 189118.34"
           },
           {
             "name": "ADX 경고",
             "score": 0,
             "passed": false,
-            "note": "ADX 26.82 (해당 없음)"
+            "note": "ADX 28.22 (해당 없음)"
           },
           {
             "name": "하락+대량거래",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.80배, 하락 폭 -33000.00"
+            "note": "거래량 0.17배, 하락 폭 -21000.00"
           },
           {
             "name": "상승+거래량감소",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.80배"
+            "note": "거래량 0.17배"
           },
           {
             "name": "거래량 클라이맥스(3배+)",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.80배"
+            "note": "거래량 0.17배"
+          }
+        ]
+      },
+      "holding": {
+        "is_holding": false
+      }
+    },
+    {
+      "ticker": "012450.KS",
+      "name": "한화에어로스페이스",
+      "market": "KR",
+      "category": "minor",
+      "status": "ok",
+      "last_date": "2026-05-19",
+      "indicators": {
+        "close": 1312000.0,
+        "prev_close": 1227000.0,
+        "ema_short": 1278623.5642071203,
+        "ema_long": 1343311.8370003947,
+        "ema_short_prev": 1261935.3463106805,
+        "ema_long_prev": 1346607.8198425416,
+        "sma_mid": 1380966.6666666667,
+        "sma_long": 1218003.2088541666,
+        "bb_upper": 1517144.5828304146,
+        "bb_middle": 1363700.0,
+        "bb_lower": 1210255.4171695854,
+        "bb_upper_prev": 1522842.805821106,
+        "bb_lower_prev": 1215657.194178894,
+        "bb_width": 306889.1656608293,
+        "bb_width_avg": 320018.40080006764,
+        "adx": 20.545620952831065,
+        "adx_prev": 21.29578890286145,
+        "plus_di": 21.723889820389246,
+        "minus_di": 26.980800140811382,
+        "volume": 139053.0,
+        "vol_avg20": 208306.9,
+        "vol_ratio": 0.6675390973606732
+      },
+      "buy": {
+        "total": 3,
+        "verdict": "관망",
+        "details": [
+          {
+            "name": "골든크로스",
+            "score": 0,
+            "passed": false,
+            "note": "단기EMA 1278623.56 vs 장기EMA 1343311.84"
+          },
+          {
+            "name": "BB 하단 반등",
+            "score": 3,
+            "passed": true,
+            "note": "종가 1312000.00 vs BB하단 1210255.42"
+          },
+          {
+            "name": "BB 밴드워크",
+            "score": 0,
+            "passed": false,
+            "note": "종가 1312000.00 vs BB상단 1517144.58, 밴드폭 306889.17"
+          },
+          {
+            "name": "ADX>=30 상승추세",
+            "score": 0,
+            "passed": false,
+            "note": "ADX 20.55, +DI 21.72, -DI 26.98"
+          },
+          {
+            "name": "거래량 돌파(2배+)",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.67배, 종가 1312000.00 vs 전일 1227000.00"
+          }
+        ]
+      },
+      "warning": {
+        "total": 3,
+        "verdict": "정상",
+        "details": [
+          {
+            "name": "데드크로스",
+            "score": 0,
+            "passed": false,
+            "note": "단기EMA 1278623.56 vs 장기EMA 1343311.84"
+          },
+          {
+            "name": "BB 상단 꺾임",
+            "score": 0,
+            "passed": false,
+            "note": "종가 1312000.00 vs BB상단 1517144.58"
+          },
+          {
+            "name": "볼린저 스퀴즈",
+            "score": 0,
+            "passed": false,
+            "note": "밴드폭 306889.17 vs 60일평균 320018.40"
+          },
+          {
+            "name": "ADX 경고",
+            "score": 0,
+            "passed": false,
+            "note": "ADX 20.55 (해당 없음)"
+          },
+          {
+            "name": "하락+대량거래",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.67배, 하락 폭 85000.00"
+          },
+          {
+            "name": "상승+거래량감소",
+            "score": 3,
+            "passed": true,
+            "note": "거래량 0.67배"
+          },
+          {
+            "name": "거래량 클라이맥스(3배+)",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.67배"
+          }
+        ]
+      },
+      "holding": {
+        "is_holding": false
+      }
+    },
+    {
+      "ticker": "108490.KQ",
+      "name": "로보티즈",
+      "market": "KR",
+      "category": "minor",
+      "status": "ok",
+      "last_date": "2026-05-19",
+      "indicators": {
+        "close": 277500.0,
+        "prev_close": 306000.0,
+        "ema_short": 311056.53297675226,
+        "ema_long": 311650.1430480507,
+        "ema_short_prev": 327834.7994651284,
+        "ema_long_prev": 315244.8949478455,
+        "sma_mid": 275666.6666666667,
+        "sma_long": 271619.1666666667,
+        "bb_upper": 373764.2715944774,
+        "bb_middle": 315950.0,
+        "bb_lower": 258135.72840552256,
+        "bb_upper_prev": 374167.68559879845,
+        "bb_lower_prev": 257282.31440120158,
+        "bb_width": 115628.54318895485,
+        "bb_width_avg": 82753.09673695972,
+        "adx": 33.555051574553836,
+        "adx_prev": 35.51057273831752,
+        "plus_di": 21.20944054124694,
+        "minus_di": 18.0188918248993,
+        "volume": 138264.0,
+        "vol_avg20": 450987.55,
+        "vol_ratio": 0.3065805253382272
+      },
+      "buy": {
+        "total": 3,
+        "verdict": "관망",
+        "details": [
+          {
+            "name": "골든크로스",
+            "score": 0,
+            "passed": false,
+            "note": "단기EMA 311056.53 vs 장기EMA 311650.14"
+          },
+          {
+            "name": "BB 하단 반등",
+            "score": 0,
+            "passed": false,
+            "note": "종가 277500.00 vs BB하단 258135.73"
+          },
+          {
+            "name": "BB 밴드워크",
+            "score": 0,
+            "passed": false,
+            "note": "종가 277500.00 vs BB상단 373764.27, 밴드폭 115628.54"
+          },
+          {
+            "name": "ADX>=30 상승추세",
+            "score": 3,
+            "passed": true,
+            "note": "ADX 33.56, +DI 21.21, -DI 18.02"
+          },
+          {
+            "name": "거래량 돌파(2배+)",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.31배, 종가 277500.00 vs 전일 306000.00"
+          }
+        ]
+      },
+      "warning": {
+        "total": 5,
+        "verdict": "주의",
+        "details": [
+          {
+            "name": "데드크로스",
+            "score": 5,
+            "passed": true,
+            "note": "단기EMA 311056.53 vs 장기EMA 311650.14"
+          },
+          {
+            "name": "BB 상단 꺾임",
+            "score": 0,
+            "passed": false,
+            "note": "종가 277500.00 vs BB상단 373764.27"
+          },
+          {
+            "name": "볼린저 스퀴즈",
+            "score": 0,
+            "passed": false,
+            "note": "밴드폭 115628.54 vs 60일평균 82753.10"
+          },
+          {
+            "name": "ADX 경고",
+            "score": 0,
+            "passed": false,
+            "note": "ADX 33.56 (해당 없음)"
+          },
+          {
+            "name": "하락+대량거래",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.31배, 하락 폭 -28500.00"
+          },
+          {
+            "name": "상승+거래량감소",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.31배"
+          },
+          {
+            "name": "거래량 클라이맥스(3배+)",
+            "score": 0,
+            "passed": false,
+            "note": "거래량 0.31배"
           }
         ]
       },
@@ -2331,30 +2322,30 @@
       "market": "KR",
       "category": "holdings_only",
       "status": "ok",
-      "last_date": "2026-05-18",
+      "last_date": "2026-05-19",
       "indicators": {
-        "close": 1840000.0,
-        "prev_close": 1819000.0,
-        "ema_short": 1844985.865471884,
-        "ema_long": 1566587.279811364,
-        "ema_short_prev": 1847478.7982078257,
-        "ema_long_prev": 1537806.9934757182,
-        "sma_mid": 1143902.1302083333,
-        "sma_long": 912694.7919270833,
-        "bb_upper": 2089903.075177345,
-        "bb_middle": 1503350.0,
-        "bb_lower": 916796.9248226552,
-        "bb_upper_prev": 2053013.658000907,
-        "bb_lower_prev": 885186.3419990932,
-        "bb_width": 1173106.15035469,
-        "bb_width_avg": 416615.0474106012,
-        "adx": 50.16145939490185,
-        "adx_prev": 51.38702980144542,
-        "plus_di": 34.29043582711361,
-        "minus_di": 16.801987656219627,
-        "volume": 6481608.0,
-        "vol_avg20": 5119696.7,
-        "vol_ratio": 1.2660140589968933
+        "close": 1788500.0,
+        "prev_close": 1840000.0,
+        "ema_short": 1826157.2436479228,
+        "ema_long": 1587721.8245912178,
+        "ema_short_prev": 1844985.865471884,
+        "ema_long_prev": 1566587.279811346,
+        "sma_mid": 1158837.9072916666,
+        "sma_long": 922927.5966145833,
+        "bb_upper": 2108883.9409782174,
+        "bb_middle": 1536375.0,
+        "bb_lower": 963866.0590217826,
+        "bb_upper_prev": 2089903.075177345,
+        "bb_lower_prev": 916796.9248226552,
+        "bb_width": 1145017.8819564348,
+        "bb_width_avg": 431807.149136237,
+        "adx": 49.02342971456613,
+        "adx_prev": 50.161459376535795,
+        "plus_di": 33.03242862494023,
+        "minus_di": 16.185576083677322,
+        "volume": 976576.0,
+        "vol_avg20": 4989613.75,
+        "vol_ratio": 0.19572176303225877
       },
       "buy": {
         "total": 3,
@@ -2364,31 +2355,31 @@
             "name": "골든크로스",
             "score": 0,
             "passed": false,
-            "note": "단기EMA 1844985.87 vs 장기EMA 1566587.28"
+            "note": "단기EMA 1826157.24 vs 장기EMA 1587721.82"
           },
           {
             "name": "BB 하단 반등",
             "score": 0,
             "passed": false,
-            "note": "종가 1840000.00 vs BB하단 916796.92"
+            "note": "종가 1788500.00 vs BB하단 963866.06"
           },
           {
             "name": "BB 밴드워크",
             "score": 0,
             "passed": false,
-            "note": "종가 1840000.00 vs BB상단 2089903.08, 밴드폭 1173106.15"
+            "note": "종가 1788500.00 vs BB상단 2108883.94, 밴드폭 1145017.88"
           },
           {
             "name": "ADX>=30 상승추세",
             "score": 3,
             "passed": true,
-            "note": "ADX 50.16, +DI 34.29, -DI 16.80"
+            "note": "ADX 49.02, +DI 33.03, -DI 16.19"
           },
           {
             "name": "거래량 돌파(2배+)",
             "score": 0,
             "passed": false,
-            "note": "거래량 1.27배, 종가 1840000.00 vs 전일 1819000.00"
+            "note": "거래량 0.20배, 종가 1788500.00 vs 전일 1840000.00"
           }
         ]
       },
@@ -2400,89 +2391,89 @@
             "name": "데드크로스",
             "score": 0,
             "passed": false,
-            "note": "단기EMA 1844985.87 vs 장기EMA 1566587.28"
+            "note": "단기EMA 1826157.24 vs 장기EMA 1587721.82"
           },
           {
             "name": "BB 상단 꺾임",
             "score": 0,
             "passed": false,
-            "note": "종가 1840000.00 vs BB상단 2089903.08"
+            "note": "종가 1788500.00 vs BB상단 2108883.94"
           },
           {
             "name": "볼린저 스퀴즈",
             "score": 0,
             "passed": false,
-            "note": "밴드폭 1173106.15 vs 60일평균 416615.05"
+            "note": "밴드폭 1145017.88 vs 60일평균 431807.15"
           },
           {
             "name": "ADX 경고",
             "score": 0,
             "passed": false,
-            "note": "ADX 50.16 (해당 없음)"
+            "note": "ADX 49.02 (해당 없음)"
           },
           {
             "name": "하락+대량거래",
             "score": 0,
             "passed": false,
-            "note": "거래량 1.27배, 하락 폭 21000.00"
+            "note": "거래량 0.20배, 하락 폭 -51500.00"
           },
           {
             "name": "상승+거래량감소",
             "score": 0,
             "passed": false,
-            "note": "거래량 1.27배"
+            "note": "거래량 0.20배"
           },
           {
             "name": "거래량 클라이맥스(3배+)",
             "score": 0,
             "passed": false,
-            "note": "거래량 1.27배"
+            "note": "거래량 0.20배"
           }
         ]
       },
       "holding": {
         "is_holding": true,
-        "avg_price": 1571000,
-        "shares": 2,
+        "avg_price": 1681700.0,
+        "shares": 3.0,
         "currency": "KRW",
-        "current_close": 1840000.0,
-        "pnl_pct": 17.12285168682368,
+        "current_close": 1788500.0,
+        "pnl_pct": 6.350716536837724,
         "stop_loss_hit": false,
-        "target1_hit": true,
+        "target1_hit": false,
         "target2_hit": false,
-        "action": "1차 익절 50% (+10% 도달)"
+        "action": "보유 유지"
       }
     },
     {
-      "ticker": "016360.KS",
-      "name": "삼성증권",
+      "ticker": "006260.KS",
+      "name": "LS",
       "market": "KR",
       "category": "holdings_only",
       "status": "ok",
-      "last_date": "2026-05-18",
+      "last_date": "2026-05-19",
       "indicators": {
-        "close": 119900.0,
-        "prev_close": 123200.0,
-        "ema_short": 125484.6133457743,
-        "ema_long": 122325.81656121198,
-        "ema_short_prev": 128276.92001866145,
-        "ema_long_prev": 122581.1656729185,
-        "sma_mid": 107541.66666666667,
-        "sma_long": 94127.58834635417,
-        "bb_upper": 148268.36400687325,
-        "bb_middle": 121825.0,
-        "bb_lower": 95381.63599312675,
-        "bb_upper_prev": 148245.78806730427,
-        "bb_lower_prev": 94474.21193269575,
-        "bb_width": 52886.7280137465,
-        "bb_width_avg": 29934.021593492143,
-        "adx": 32.70142757624991,
-        "adx_prev": 34.25240186929156,
-        "plus_di": 30.34164825198767,
-        "minus_di": 23.58048093383998,
-        "volume": 603451.0,
-        "vol_avg20": 988609.7,
-        "vol_ratio": 0.6104036810482438
+        "close": 518000.0,
+        "prev_close": 528000.0,
+        "ema_short": 511702.87780360924,
+        "ema_long": 461650.9936584831,
+        "ema_short_prev": 508554.31670541386,
+        "ema_long_prev": 455719.5193067445,
+        "sma_mid": 335335.74296875,
+        "sma_long": 269277.7591145833,
+        "bb_upper": 599511.7259025546,
+        "bb_middle": 458925.0,
+        "bb_lower": 318338.2740974454,
+        "bb_upper_prev": 598031.1415158451,
+        "bb_lower_prev": 300968.8584841549,
+        "bb_width": 281173.45180510916,
+        "bb_width_avg": 132191.8481210671,
+        "adx": 44.11318058003921,
+        "adx_prev": 44.381069127721844,
+        "plus_di": 35.36489667636024,
+        "minus_di": 14.929831879025619,
+        "volume": 100747.0,
+        "vol_avg20": 269441.1,
+        "vol_ratio": 0.3739110328750885
       },
       "buy": {
         "total": 3,
@@ -2492,31 +2483,31 @@
             "name": "골든크로스",
             "score": 0,
             "passed": false,
-            "note": "단기EMA 125484.61 vs 장기EMA 122325.82"
+            "note": "단기EMA 511702.88 vs 장기EMA 461650.99"
           },
           {
             "name": "BB 하단 반등",
             "score": 0,
             "passed": false,
-            "note": "종가 119900.00 vs BB하단 95381.64"
+            "note": "종가 518000.00 vs BB하단 318338.27"
           },
           {
             "name": "BB 밴드워크",
             "score": 0,
             "passed": false,
-            "note": "종가 119900.00 vs BB상단 148268.36, 밴드폭 52886.73"
+            "note": "종가 518000.00 vs BB상단 599511.73, 밴드폭 281173.45"
           },
           {
             "name": "ADX>=30 상승추세",
             "score": 3,
             "passed": true,
-            "note": "ADX 32.70, +DI 30.34, -DI 23.58"
+            "note": "ADX 44.11, +DI 35.36, -DI 14.93"
           },
           {
             "name": "거래량 돌파(2배+)",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.61배, 종가 119900.00 vs 전일 123200.00"
+            "note": "거래량 0.37배, 종가 518000.00 vs 전일 528000.00"
           }
         ]
       },
@@ -2528,181 +2519,53 @@
             "name": "데드크로스",
             "score": 0,
             "passed": false,
-            "note": "단기EMA 125484.61 vs 장기EMA 122325.82"
+            "note": "단기EMA 511702.88 vs 장기EMA 461650.99"
           },
           {
             "name": "BB 상단 꺾임",
             "score": 0,
             "passed": false,
-            "note": "종가 119900.00 vs BB상단 148268.36"
+            "note": "종가 518000.00 vs BB상단 599511.73"
           },
           {
             "name": "볼린저 스퀴즈",
             "score": 0,
             "passed": false,
-            "note": "밴드폭 52886.73 vs 60일평균 29934.02"
+            "note": "밴드폭 281173.45 vs 60일평균 132191.85"
           },
           {
             "name": "ADX 경고",
             "score": 0,
             "passed": false,
-            "note": "ADX 32.70 (해당 없음)"
+            "note": "ADX 44.11 (해당 없음)"
           },
           {
             "name": "하락+대량거래",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.61배, 하락 폭 -3300.00"
+            "note": "거래량 0.37배, 하락 폭 -10000.00"
           },
           {
             "name": "상승+거래량감소",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.61배"
+            "note": "거래량 0.37배"
           },
           {
             "name": "거래량 클라이맥스(3배+)",
             "score": 0,
             "passed": false,
-            "note": "거래량 0.61배"
+            "note": "거래량 0.37배"
           }
         ]
       },
       "holding": {
         "is_holding": true,
-        "avg_price": 149038,
-        "shares": 80,
+        "avg_price": 507000.0,
+        "shares": 5.0,
         "currency": "KRW",
-        "current_close": 119900.0,
-        "pnl_pct": -19.55071860867698,
-        "stop_loss_hit": true,
-        "target1_hit": false,
-        "target2_hit": false,
-        "action": "손절 무조건 정리 (-7% 도달)"
-      }
-    },
-    {
-      "ticker": "LLYX",
-      "name": "Defiance LLY 2X (정리 검토)",
-      "market": "US",
-      "category": "holdings_only",
-      "status": "ok",
-      "last_date": "2026-05-18",
-      "indicators": {
-        "close": 19.309999465942383,
-        "prev_close": 19.950000762939453,
-        "ema_short": 19.232105813721702,
-        "ema_long": 18.51939422355127,
-        "ema_short_prev": 19.21263240066653,
-        "ema_long_prev": 18.44033369931216,
-        "sma_mid": 17.969299964904785,
-        "sma_long": 18.9187211894989,
-        "bb_upper": 21.36511964317642,
-        "bb_middle": 17.941500091552733,
-        "bb_lower": 14.517880539929045,
-        "bb_upper_prev": 21.213533240724182,
-        "bb_lower_prev": 14.45246693475189,
-        "bb_width": 6.847239103247375,
-        "bb_width_avg": 4.943270866869939,
-        "adx": 17.675768597650237,
-        "adx_prev": 18.355778968528686,
-        "plus_di": 27.018660068257894,
-        "minus_di": 22.631733154625596,
-        "volume": 506983.0,
-        "vol_avg20": 835014.15,
-        "vol_ratio": 0.6071549805473356
-      },
-      "buy": {
-        "total": 0,
-        "verdict": "관망",
-        "details": [
-          {
-            "name": "골든크로스",
-            "score": 0,
-            "passed": false,
-            "note": "단기EMA 19.23 vs 장기EMA 18.52"
-          },
-          {
-            "name": "BB 하단 반등",
-            "score": 0,
-            "passed": false,
-            "note": "종가 19.31 vs BB하단 14.52"
-          },
-          {
-            "name": "BB 밴드워크",
-            "score": 0,
-            "passed": false,
-            "note": "종가 19.31 vs BB상단 21.37, 밴드폭 6.85"
-          },
-          {
-            "name": "ADX>=30 상승추세",
-            "score": 0,
-            "passed": false,
-            "note": "ADX 17.68, +DI 27.02, -DI 22.63"
-          },
-          {
-            "name": "거래량 돌파(2배+)",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.61배, 종가 19.31 vs 전일 19.95"
-          }
-        ]
-      },
-      "warning": {
-        "total": 0,
-        "verdict": "정상",
-        "details": [
-          {
-            "name": "데드크로스",
-            "score": 0,
-            "passed": false,
-            "note": "단기EMA 19.23 vs 장기EMA 18.52"
-          },
-          {
-            "name": "BB 상단 꺾임",
-            "score": 0,
-            "passed": false,
-            "note": "종가 19.31 vs BB상단 21.37"
-          },
-          {
-            "name": "볼린저 스퀴즈",
-            "score": 0,
-            "passed": false,
-            "note": "밴드폭 6.85 vs 60일평균 4.94"
-          },
-          {
-            "name": "ADX 경고",
-            "score": 0,
-            "passed": false,
-            "note": "ADX 17.68 (해당 없음)"
-          },
-          {
-            "name": "하락+대량거래",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.61배, 하락 폭 -0.64"
-          },
-          {
-            "name": "상승+거래량감소",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.61배"
-          },
-          {
-            "name": "거래량 클라이맥스(3배+)",
-            "score": 0,
-            "passed": false,
-            "note": "거래량 0.61배"
-          }
-        ]
-      },
-      "holding": {
-        "is_holding": true,
-        "avg_price": 18.34,
-        "shares": 100,
-        "currency": "USD",
-        "current_close": 19.309999465942383,
-        "pnl_pct": 5.288982911354323,
+        "current_close": 518000.0,
+        "pnl_pct": 2.1696252465483234,
         "stop_loss_hit": false,
         "target1_hit": false,
         "target2_hit": false,
