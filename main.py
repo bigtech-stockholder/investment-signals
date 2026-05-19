@@ -5,6 +5,7 @@ investment-signals: 종가 기준 자동 매매 시그널 시스템
 import json
 import os
 import shutil
+import sys
 from datetime import datetime, timezone, timedelta
 
 import certifi
@@ -33,11 +34,124 @@ DATA_DIR = ROOT / "data"
 
 
 def load_config():
-    """tickers.json과 portfolio.json을 읽어서 dict로 반환."""
-    with open(TICKERS_PATH, "r", encoding="utf-8") as f:
-        tickers = json.load(f)
-    with open(PORTFOLIO_PATH, "r", encoding="utf-8") as f:
-        portfolio = json.load(f)
+    """Google Sheets에서 관심종목과 보유종목 정보를 읽어온다.
+    환경변수 GOOGLE_SERVICE_ACCOUNT_JSON과 GOOGLE_SHEET_ID가 있으면 시트를 읽고,
+    없으면 로컬 fallback으로 tickers.json/portfolio.json을 읽는다 (개발용).
+
+    Returns:
+        (tickers_dict, portfolio_dict): 기존 JSON 파일 구조와 호환되는 형태
+    """
+    sa_json = os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON")
+    sheet_id = os.environ.get("GOOGLE_SHEET_ID")
+
+    if not sa_json or not sheet_id:
+        # 로컬 개발 fallback: 기존 JSON 파일 읽기
+        print("⚠️  GOOGLE_SERVICE_ACCOUNT_JSON 또는 GOOGLE_SHEET_ID 환경변수가 없음 → 로컬 JSON 파일 사용")
+        with open(TICKERS_PATH, "r", encoding="utf-8") as f:
+            tickers = json.load(f)
+        with open(PORTFOLIO_PATH, "r", encoding="utf-8") as f:
+            portfolio = json.load(f)
+        return tickers, portfolio
+
+    # Google Sheets 인증
+    import gspread
+    from google.oauth2.service_account import Credentials
+
+    try:
+        creds_dict = json.loads(sa_json)
+    except json.JSONDecodeError as e:
+        raise RuntimeError(f"GOOGLE_SERVICE_ACCOUNT_JSON 파싱 실패: {e}")
+
+    scopes = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
+    creds = Credentials.from_service_account_info(creds_dict, scopes=scopes)
+    gc = gspread.authorize(creds)
+    sh = gc.open_by_key(sheet_id)
+
+    # holdings 탭 읽기
+    try:
+        holdings_ws = sh.worksheet("holdings")
+    except Exception as e:
+        raise RuntimeError(f"'holdings' 탭을 찾을 수 없음: {e}")
+    holdings_rows = holdings_ws.get_all_records()
+
+    # watchlist 탭 읽기 (관심종목 + holdings_only 통합)
+    try:
+        watchlist_ws = sh.worksheet("watchlist")
+    except Exception as e:
+        raise RuntimeError(f"'watchlist' 탭을 찾을 수 없음: {e}")
+    watchlist_rows = watchlist_ws.get_all_records()
+
+    # === holdings 데이터 변환 ===
+    portfolio = {"holdings": []}
+    for i, row in enumerate(holdings_rows, start=2):  # 2행부터 데이터
+        # 빈 행 건너뛰기
+        if not row.get("ticker") or str(row.get("ticker")).strip() == "":
+            continue
+        try:
+            holding = {
+                "ticker": str(row["ticker"]).strip(),
+                "name": str(row["name"]).strip(),
+                "shares": float(row["shares"]),
+                "avg_price": float(row["avg_price"]),
+                "currency": str(row["currency"]).strip().upper(),
+            }
+        except (KeyError, ValueError, TypeError) as e:
+            raise RuntimeError(
+                f"❌ holdings 탭 {i}행 형식 오류: {e}\n"
+                f"   해당 행 데이터: {row}\n"
+                f"   확인: name/ticker/shares/avg_price/currency 컬럼이 모두 있고, "
+                f"shares와 avg_price는 숫자여야 합니다."
+            )
+        if holding["currency"] not in ("KRW", "USD"):
+            raise RuntimeError(
+                f"❌ holdings 탭 {i}행: currency는 'KRW' 또는 'USD'만 가능 (현재 값: '{holding['currency']}')"
+            )
+        portfolio["holdings"].append(holding)
+
+    # === watchlist 데이터 변환 ===
+    tickers = {"watchlist": {"major": [], "minor": []}, "holdings_only": []}
+    for i, row in enumerate(watchlist_rows, start=2):
+        if not row.get("ticker") or str(row.get("ticker")).strip() == "":
+            continue
+        try:
+            item = {
+                "name": str(row["name"]).strip(),
+                "ticker": str(row["ticker"]).strip(),
+                "market": str(row["market"]).strip().upper(),
+            }
+            category = str(row["category"]).strip().lower()
+        except (KeyError, ValueError, TypeError) as e:
+            raise RuntimeError(
+                f"❌ watchlist 탭 {i}행 형식 오류: {e}\n"
+                f"   해당 행 데이터: {row}"
+            )
+
+        if item["market"] not in ("KR", "US"):
+            raise RuntimeError(
+                f"❌ watchlist 탭 {i}행: market은 'KR' 또는 'US'만 가능 (현재 값: '{item['market']}')"
+            )
+
+        if category == "major":
+            tickers["watchlist"]["major"].append(item)
+        elif category == "minor":
+            tickers["watchlist"]["minor"].append(item)
+        elif category == "holdings_only":
+            tickers["holdings_only"].append(item)
+        else:
+            raise RuntimeError(
+                f"❌ watchlist 탭 {i}행: category는 'major', 'minor', 'holdings_only' 중 하나여야 함 "
+                f"(현재 값: '{category}')"
+            )
+
+    # 최소 검증
+    total_watchlist = len(tickers["watchlist"]["major"]) + len(tickers["watchlist"]["minor"]) + len(tickers["holdings_only"])
+    if total_watchlist == 0:
+        raise RuntimeError("❌ watchlist 탭에 종목이 하나도 없음")
+    if len(portfolio["holdings"]) == 0:
+        print("⚠️  holdings 탭이 비어있음 — 보유 종목 없음으로 진행")
+
+    print(f"✅ 시트 읽기 성공: 관심종목 {total_watchlist}개 (major {len(tickers['watchlist']['major'])} / minor {len(tickers['watchlist']['minor'])} / holdings_only {len(tickers['holdings_only'])}), 보유종목 {len(portfolio['holdings'])}개")
+
     return tickers, portfolio
 
 
@@ -764,6 +878,26 @@ def _build_embeds(results: list) -> list:
     return embeds
 
 
+def send_error_notification(error_message: str) -> None:
+    """치명적 에러(시트 형식 오류 등) 발생 시 디스코드로 알림."""
+    webhook_url = os.environ.get("DISCORD_WEBHOOK_URL")
+    if not webhook_url:
+        print(f"[ERROR] {error_message}")
+        return
+    payload = {
+        "embeds": [{
+            "title": "🚨 시스템 오류 발생 — 시트/설정 확인 필요",
+            "description": error_message[:1900],
+            "color": 0xC0392B,
+        }],
+        "content": "**자동 실행 실패** — 본인 시트를 확인해주세요.",
+    }
+    try:
+        requests.post(webhook_url, json=payload, timeout=10)
+    except Exception:
+        pass
+
+
 def send_discord_notification(results: list, summary: dict) -> None:
     """알림이 필요한 종목이 있으면 Discord Webhook으로 발송.
     환경변수 DISCORD_WEBHOOK_URL이 없으면 로컬 테스트 모드로 간주하고 콘솔에만 출력.
@@ -806,47 +940,53 @@ def send_discord_notification(results: list, summary: dict) -> None:
 
 
 if __name__ == "__main__":
-    print("=" * 60)
-    print(f"투자 시그널 산출 시작: {datetime.now(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M KST')}")
-    print("=" * 60)
+    try:
+        print("=" * 60)
+        print(f"투자 시그널 산출 시작: {datetime.now(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M KST')}")
+        print("=" * 60)
 
-    results = run_all(verbose=True)
-    summary = save_results(results)
+        results = run_all(verbose=True)
+        summary = save_results(results)
 
-    print("\n" + "=" * 60)
-    print(f"총 {len(results)}개 종목 처리 완료")
-    print("=" * 60)
+        print("\n" + "=" * 60)
+        print(f"총 {len(results)}개 종목 처리 완료")
+        print("=" * 60)
 
-    # 매수 8점 이상 또는 경고 5점 이상 종목만 요약
-    print("\n[주요 시그널 요약 — 매수 8점+ / 경고 5점+]")
-    found = False
-    for r in results:
-        if r["status"] != "ok":
-            continue
-        buy_pt = r["buy"]["total"]
-        warn_pt = r["warning"]["total"]
-        if buy_pt >= 8 or warn_pt >= 5:
-            found = True
-            tag = []
-            if buy_pt >= 8:
-                tag.append(f"매수 {buy_pt}점 ({r['buy']['verdict']})")
-            if warn_pt >= 5:
-                tag.append(f"경고 {warn_pt}점 ({r['warning']['verdict']})")
-            print(f"  • {r['ticker']:15s} ({r['name']}) — {' / '.join(tag)}")
-    if not found:
-        print("  (해당 종목 없음)")
+        print("\n[주요 시그널 요약 — 매수 8점+ / 경고 5점+]")
+        found = False
+        for r in results:
+            if r["status"] != "ok":
+                continue
+            buy_pt = r["buy"]["total"]
+            warn_pt = r["warning"]["total"]
+            if buy_pt >= 8 or warn_pt >= 5:
+                found = True
+                tag = []
+                if buy_pt >= 8:
+                    tag.append(f"매수 {buy_pt}점 ({r['buy']['verdict']})")
+                if warn_pt >= 5:
+                    tag.append(f"경고 {warn_pt}점 ({r['warning']['verdict']})")
+                print(f"  • {r['ticker']:15s} ({r['name']}) — {' / '.join(tag)}")
+        if not found:
+            print("  (해당 종목 없음)")
 
-    # 보유분 손절/익절 도달 종목
-    print("\n[보유분 손절/익절 도달]")
-    found = False
-    for r in results:
-        if r["status"] != "ok" or not r["holding"].get("is_holding"):
-            continue
-        h = r["holding"]
-        if h["stop_loss_hit"] or h["target1_hit"] or h["target2_hit"]:
-            found = True
-            print(f"  • {r['ticker']:15s} ({r['name']}) — {h['pnl_pct']:+.2f}% — {h['action']}")
-    if not found:
-        print("  (해당 종목 없음)")
+        print("\n[보유분 손절/익절 도달]")
+        found = False
+        for r in results:
+            if r["status"] != "ok" or not r["holding"].get("is_holding"):
+                continue
+            h = r["holding"]
+            if h["stop_loss_hit"] or h["target1_hit"] or h["target2_hit"]:
+                found = True
+                print(f"  • {r['ticker']:15s} ({r['name']}) — {h['pnl_pct']:+.2f}% — {h['action']}")
+        if not found:
+            print("  (해당 종목 없음)")
 
-    send_discord_notification(results, summary)
+        send_discord_notification(results, summary)
+
+    except Exception as e:
+        import traceback
+        err_msg = f"{type(e).__name__}: {e}\n\n{traceback.format_exc()}"
+        print(f"\n❌ 치명적 오류 발생:\n{err_msg}")
+        send_error_notification(err_msg)
+        sys.exit(1)

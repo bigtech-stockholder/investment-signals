@@ -4,3 +4,5 @@ __pycache__/
 venv/
 .env
 *.log
+# 로컬 개발용 fallback (실제 데이터는 Google Sheets 사용)
+# tickers.json과 portfolio.json은 이미 저장소에 있으므로 .gitignore에 추가하지 않음
